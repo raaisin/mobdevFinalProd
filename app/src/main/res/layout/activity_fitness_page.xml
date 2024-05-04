@@ -11,6 +11,14 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="samokas github uy"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="421dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="di pa ko sure unsaon ni diri"
         tools:layout_editor_absoluteX="122dp"
         tools:layout_editor_absoluteY="367dp" />
