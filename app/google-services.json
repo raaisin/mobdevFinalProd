@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "374523289731",
+    "project_id": "teambangan-321",
+    "storage_bucket": "teambangan-321.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374523289731:android:572ba43acae9f410057bb6",
+        "android_client_info": {
+          "package_name": "com.example.androidwithfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ0lOi-zxbIFGY6rBD4WwT04eN_NNadbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374523289731:android:831c2c5e682976c4057bb6",
+        "android_client_info": {
+          "package_name": "com.example.mobdevfinalprod"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ0lOi-zxbIFGY6rBD4WwT04eN_NNadbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

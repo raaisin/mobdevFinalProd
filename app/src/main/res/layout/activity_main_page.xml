@@ -19,7 +19,7 @@
         android:id="@+id/main_page_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FF0000"
+        android:background="@color/main_color"
         app:tabTextColor="@color/white"
         app:tabIndicatorColor="@color/white"
         app:tabIndicatorGravity="top"
@@ -29,7 +29,7 @@
             android:id="@+id/training"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/training" />
+            android:text="@string/training"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/discover"

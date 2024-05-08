@@ -1,12 +1,30 @@
 package com.example.mobdevfinalprod;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Transaction;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,13 +37,13 @@ public class LoginPage extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private TextView login_status;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private FirebaseFirestore database;
     public LoginPage() {
-        // Required empty public constructor
     }
 
     /**
@@ -58,7 +76,50 @@ public class LoginPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_login_page, container, false);
+        login_status = view.findViewById(R.id.login_status);
+        view.findViewById(R.id.to_registration_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                RegistrationPage registrationPage = new RegistrationPage();
+                WelcomePage.changeToRegistration(fragmentManager,registrationPage);
+            }
+        });
+
+        view.findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = ((EditText) view.findViewById(R.id.username_login)).getText().toString();
+                String password = ((EditText) view.findViewById(R.id.password_login)).getText().toString();
+
+                //find if user already registerd
+                database = FirebaseFirestore.getInstance();
+                DocumentReference userReference = database.collection("users").document(username);
+
+                userReference.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot snapshot = task.getResult();
+                        if (snapshot.exists()) {
+                            String storedPassword = snapshot.getString("password");
+                            if (storedPassword.equals(password)) {
+                                login_status.setText("Login Successful");
+                                login_status.setTextColor(Color.GREEN);
+                                //redirect sa main page and pass the username sa intent
+                                Intent intent = new Intent(getContext(),MainPage.class);
+                                startActivity(intent);
+                            } else {
+                                login_status.setText("Wrong password");
+                                login_status.setTextColor(Color.RED);
+                            }
+                        } else {
+                            login_status.setText("Username does not exist");
+                            login_status.setTextColor(Color.RED);
+                        }
+                    }
+                });
+            }
+        });
+        return view;
     }
 }

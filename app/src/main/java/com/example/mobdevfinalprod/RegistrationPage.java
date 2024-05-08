@@ -1,12 +1,32 @@
 package com.example.mobdevfinalprod;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Transaction;
+import com.google.firebase.firestore.auth.User;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,10 +43,12 @@ public class RegistrationPage extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FirebaseFirestore database;
 
     public RegistrationPage() {
         // Required empty public constructor
     }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -58,7 +80,57 @@ public class RegistrationPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registration_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_registration_page, container, false);
+        view.findViewById(R.id.to_login_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                LoginPage loginPage = new LoginPage();
+                WelcomePage.changeToLogin(fragmentManager,loginPage);
+            }
+        });
+
+        view.findViewById(R.id.register_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView textView = view.findViewById(R.id.register_message);
+                String username = ((EditText)view.findViewById(R.id.username_register)).getText().toString();
+                String password = ((EditText)view.findViewById(R.id.password_regsister)).getText().toString();
+                String confirm_password = ((EditText)view.findViewById(R.id.confirm_password_register)).getText().toString();
+
+                if(!password.equals(confirm_password)) {
+                    textView.setText("Password does not match");
+                    textView.setTextColor(Color.RED);
+                }
+                else{
+                    database = FirebaseFirestore.getInstance();
+                    Map<String,String> users = new HashMap<>();
+                    users.put("username",username);
+                    users.put("password",password);
+
+                    //find if user already registerd
+                    DocumentReference userReference = database.collection("users").document(username);
+
+                    database.runTransaction((Transaction.Function<Void>) transaction -> {
+                        DocumentSnapshot snapshot = transaction.get(userReference);
+                        if (snapshot.exists()) {
+                            textView.setText("Username is already existing");
+                            textView.setTextColor(Color.RED);
+                        }
+
+                        // Username does not exist, proceed with registration
+                        transaction.set(userReference, users);
+                        return null;
+                    }).addOnSuccessListener(aVoid -> {
+                        textView.setText("Registration successful");
+                        textView.setTextColor(Color.GREEN);
+                    }).addOnFailureListener(e -> {
+                        textView.setText(e.getMessage().toString());
+                        textView.setTextColor(Color.RED);
+                    });
+                }
+            }
+        });
+        return view;
     }
 }
