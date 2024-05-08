@@ -6,4 +6,8 @@
     <string name="register">REGISTER</string>
     <string name="hello_this_is_the_login_page">hello this is the login page</string>
     <string name="hello_this_is_the_registration_page">Hello this is the registration page</string>
+    <string name="training">Training</string>
+    <string name="report">Report</string>
+    <string name="discover">Discover</string>
+    <string name="ai_helper">AI Helper</string>
 </resources>
