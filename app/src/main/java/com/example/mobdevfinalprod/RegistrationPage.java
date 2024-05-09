@@ -98,6 +98,11 @@ public class RegistrationPage extends Fragment {
                 String password = ((EditText)view.findViewById(R.id.password_regsister)).getText().toString();
                 String confirm_password = ((EditText)view.findViewById(R.id.confirm_password_register)).getText().toString();
 
+                if (username.isEmpty() || password.isEmpty()){
+                    textView.setText("All fields are required");
+                    textView.setTextColor(Color.RED);
+                    return;
+                }
                 if(!password.equals(confirm_password)) {
                     textView.setText("Password does not match");
                     textView.setTextColor(Color.RED);

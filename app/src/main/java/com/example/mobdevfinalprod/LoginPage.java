@@ -92,6 +92,11 @@ public class LoginPage extends Fragment {
             public void onClick(View v) {
                 String username = ((EditText) view.findViewById(R.id.username_login)).getText().toString();
                 String password = ((EditText) view.findViewById(R.id.password_login)).getText().toString();
+                if(username.isEmpty() || password.isEmpty()){
+                    login_status.setText("All fields are required.");
+                    login_status.setTextColor(Color.RED);
+                    return;
+                }
 
                 //find if user already registerd
                 database = FirebaseFirestore.getInstance();
