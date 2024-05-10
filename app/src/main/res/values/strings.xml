@@ -15,4 +15,8 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="ai_intro_message">I\'m your new exercise companion, here to guide and support you on your fitness journey. Let\'s create a personalized plan together to help you reach your goals. Whether you\'re starting out or aiming for the next level, I\'m here to make your fitness experience enjoyable and effective. Let\'s achieve your fitness goals together</string>
+    <string name="welcome">WELCOME</string>
+    <string name="welcome_message">Join our exercise community! Create an account today and start your fitness journey with us!</string>
+    <string name="already">Already have an account?</string>
+    <string name="getting_started">Getting Started</string>
 </resources>
