@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AIHelperPage">
+    tools:context=".AIHelperPage"
+    android:backgroundTint="@color/white"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="AI HELPER PAGE" />
+        android:layout_weight=".2">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <ImageView
+                android:id="@+id/ai_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/aihelper"/>
+            <TextView
+                android:id="@+id/ai_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ai_intro_message"
+                android:layout_below="@+id/ai_image"
+                android:layout_centerInParent="true"
+                android:justificationMode="inter_word"
+                android:padding="20dp"/>
+            <RelativeLayout
+                android:id="@+id/nd_container"
+                android:layout_below="@+id/ai_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="20sp">
+                <ImageView
+                    android:id="@+id/ai_image_2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/aihelper"
+                    android:layout_alignParentEnd="true"
+                    />
+                <TextView
+                    android:id="@+id/ai_response"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fetching Response"
+                    android:layout_below="@+id/ai_image_2"
+                    android:layout_centerInParent="true"
+                    android:justificationMode="inter_word"
+                    android:padding="20dp"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".8"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
+        android:layout_marginBottom="20sp">
+        <EditText
+            android:id="@+id/ai_message_request"
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/input_background"/>
+        <ImageButton
+            android:id="@+id/submit_ai_message"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:scaleType="fitCenter"
+            android:background="@drawable/ai_button"/>
+
+    </FrameLayout>
+
+
+</LinearLayout>
