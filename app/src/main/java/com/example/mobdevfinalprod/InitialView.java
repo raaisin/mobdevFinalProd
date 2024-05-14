@@ -81,6 +81,8 @@ public class InitialView extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_initial_view, container, false);
         DateUtils.displayDates(view);
+        username_container = view.findViewById(R.id.username_init);
+        username_container.setText(username);
         return view;
     }
 }
