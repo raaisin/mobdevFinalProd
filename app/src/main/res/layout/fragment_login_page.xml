@@ -80,23 +80,43 @@
                     android:id="@+id/login_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <Button
-                    android:id="@+id/login_button"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:backgroundTint="@color/main_color"
-                    android:text="@string/login"/>
-                <TextView
-                    android:layout_marginVertical="10dp"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:id="@+id/login_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:contentDescription="@string/login"
+                        android:background="@drawable/square_button_main_color"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/don_t_have_an_account"/>
-                <Button
-                    android:id="@+id/to_registration_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:backgroundTint="@color/secondary_color"
-                    android:text="@string/register"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_marginVertical="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/don_t_have_an_account"/>
+
+                    <TextView
+                        android:id="@+id/to_registration_button"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/secondary_color"
+                        android:textStyle="bold"
+                        android:text="Register"/>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
