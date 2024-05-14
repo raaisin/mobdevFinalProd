@@ -19,4 +19,8 @@
     <string name="welcome_message">Join our exercise community! Create an account today and start your fitness journey with us!</string>
     <string name="already">Already have an account?</string>
     <string name="getting_started">Getting Started</string>
+    <string name="name_here">Name Here</string>
+    <string name="todo">TODO</string>
+    <string name="teambangan">TEAMBANGAN</string>
+    <string name="weekly_goals">Weekly Goals</string>
 </resources>

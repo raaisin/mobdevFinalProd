@@ -48,10 +48,13 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.fragment)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.generativeai)
     implementation(libs.guava)
     implementation(libs.reactive.streams)
+    implementation (libs.picasso)
+
 }

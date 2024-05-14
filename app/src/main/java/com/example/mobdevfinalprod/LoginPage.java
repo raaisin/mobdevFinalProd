@@ -112,6 +112,7 @@ public class LoginPage extends Fragment {
                                 login_status.setTextColor(Color.GREEN);
                                 //redirect sa main page and pass the username sa intent
                                 Intent intent = new Intent(getContext(),MainPage.class);
+                                intent.putExtra("username",username);
                                 startActivity(intent);
                             } else {
                                 login_status.setText("Wrong password");

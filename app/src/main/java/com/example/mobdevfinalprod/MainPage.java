@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
@@ -16,9 +17,10 @@ public class MainPage extends AppCompatActivity {
         setContentView(R.layout.activity_main_page);
 
         tabs = findViewById(R.id.main_page_tabs);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
 
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.changing_layout, new InitialView())
+        getSupportFragmentManager().beginTransaction().replace(R.id.changing_layout, new InitialView(username))
                 .addToBackStack(null).commit();
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -27,7 +29,7 @@ public class MainPage extends AppCompatActivity {
 
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment = new InitialView();
+                        fragment = new InitialView(username);
                         break;
                     case 1:
                         fragment = new DiscoverPage();

@@ -12,7 +12,9 @@ activity = "1.9.0"
 constraintlayout = "2.1.4"
 firebase-firestore = "25.0.0"
 firebase-auth = "23.0.0"
+picasso = "2.71828"
 reactiveStreams = "1.0.4"
+firebaseStorage = "21.0.0"
 
 [libraries]
 fragment = { module = "androidx.fragment:fragment", version.ref = "fragment" }
@@ -27,7 +29,9 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebase-firestore" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebase-auth" }
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 reactive-streams = { module = "org.reactivestreams:reactive-streams", version.ref = "reactiveStreams" }
+firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
