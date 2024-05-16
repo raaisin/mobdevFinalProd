@@ -107,6 +107,8 @@
                 android:fontFamily="@font/poppins"
                 android:layout_margin="10dp"
                 android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:text="@string/kick_off"/>
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -118,7 +120,8 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
                     android:orientation="horizontal"
-                    android:background="#E6DD75">
+                    android:background="#FAE05F"
+                    android:layout_marginBottom="10dp">
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
@@ -128,12 +131,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:src="@drawable/welcomeimage"/>
+                            android:src="@drawable/armstretch"
+                            android:contentDescription="armstretch"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="EXERCISE"/>
+                            android:text="Arm Stretch"
+                            android:textColor="@color/black"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
@@ -144,12 +149,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:src="@drawable/welcomeimage"/>
+                            android:src="@drawable/armcircle"
+                            android:contentDescription="armcircle"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="EXERCISE"/>
+                            android:textColor="@color/black"
+                            android:text="Arm Circle"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
@@ -160,12 +167,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:src="@drawable/welcomeimage"/>
+                            android:contentDescription="tricepstretch"
+                            android:src="@drawable/tricepstretch"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="EXERCISE"/>
+                            android:textColor="@color/black"
+                            android:text="Tricep Stretch"/>
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -179,7 +188,8 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
                     android:orientation="horizontal"
-                    android:background="#33FFF8">
+                    android:background="#33FFF8"
+                    android:layout_marginBottom="10dp">
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
@@ -189,12 +199,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:src="@drawable/welcomeimage"/>
+                            android:src="@drawable/jumpingjack"
+                            android:contentDescription="@string/jumpingjack"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="EXERCISE"/>
+                            android:textColor="@color/black"
+                            android:text="@string/jumping_jacks"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
@@ -205,12 +217,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:src="@drawable/welcomeimage"/>
+                            android:src="@drawable/crunch"
+                            android:contentDescription="@string/crunch"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="EXERCISE"/>
+                            android:textColor="@color/black"
+                            android:text="@string/crunches"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
@@ -221,12 +235,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:src="@drawable/welcomeimage"/>
+                            android:src="@drawable/mountainclimber"
+                            android:contentDescription="@string/mountainclimber"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="EXERCISE"/>
+                            android:text="@string/mountain_climber"
+                            android:textColor="@color/black"/>
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -240,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
                     android:orientation="horizontal"
-                    android:background="#4E57ED">
+                    android:background="#57C6BF">
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
@@ -250,12 +266,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:src="@drawable/welcomeimage"/>
+                            android:src="@drawable/squat"
+                            android:contentDescription="@string/squats"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="EXERCISE"/>
+                            android:text="@string/squats"
+                            android:textColor="@color/black"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
@@ -266,12 +284,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:src="@drawable/welcomeimage"/>
+                            android:src="@drawable/lunges"
+                            android:contentDescription="Lunges"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="EXERCISE"/>
+                            android:text="Lunges"
+                            android:textColor="@color/black"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
@@ -282,12 +302,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:src="@drawable/welcomeimage"/>
+                            android:src="@drawable/stepup"
+                            android:contentDescription="@string/step_up"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="EXERCISE"/>
+                            android:text="@string/step_up"
+                            android:textColor="@color/black"/>
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
