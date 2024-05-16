@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.example.mobdevfinalprod.helperclasses.DateUtils;
 import com.example.mobdevfinalprod.helperclasses.Item;
 import com.example.mobdevfinalprod.helperclasses.MyAdapter;
+import com.example.mobdevfinalprod.helperclasses.ViewUtil;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -83,6 +85,8 @@ public class InitialView extends Fragment {
         DateUtils.displayDates(view);
         username_container = view.findViewById(R.id.username_init);
         username_container.setText(username);
+
+        ViewUtil.setImageViewsClickable(view,R.id.first_linearLayout,R.id.second_linearLayout,R.id.third_linearLayout);
         return view;
     }
 }
