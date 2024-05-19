@@ -45,6 +45,7 @@ import java.util.concurrent.Executor;
  */
 public class AIHelperPage extends Fragment {
     private static String API_KEY = "AIzaSyAl5AKJTlEnB1iqdLg9GonEVAKSWXIGZg4";
+    private static final String restriction = "if question is not health related, say you " + "response: I can't process it because it is not health related";
     TextView ai_response;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -107,7 +108,7 @@ public class AIHelperPage extends Fragment {
                 }
                 else {
                     addUserQuestion(question,conversation,view);
-                    addAIResponse(question,conversation,view);
+                    addAIResponse("Question: "+question + ". " + restriction,conversation,view);
                 }
             }
         });
