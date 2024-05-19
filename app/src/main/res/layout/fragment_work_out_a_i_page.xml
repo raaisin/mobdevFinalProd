@@ -10,51 +10,28 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".2">
-
-        <RelativeLayout
+        android:layout_weight=".2"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:id="@+id/chat_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
-            <ImageView
-                android:id="@+id/ai_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/aihelper"/>
-            <TextView
-                android:id="@+id/ai_intro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ai_intro_message"
-                android:layout_below="@+id/ai_image"
-                android:layout_centerInParent="true"
-                android:justificationMode="inter_word"
-                android:padding="20dp"/>
-            <RelativeLayout
-                android:id="@+id/nd_container"
-                android:layout_below="@+id/ai_intro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="20sp">
+            android:orientation="vertical">
                 <ImageView
-                    android:id="@+id/ai_image_2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/aihelper"
-                    android:layout_alignParentEnd="true"
-                    />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/aihelper"/>
                 <TextView
-                    android:id="@+id/ai_response"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Fetching Response"
-                    android:layout_below="@+id/ai_image_2"
-                    android:layout_centerInParent="true"
+                    android:text="@string/ai_intro_message"
                     android:justificationMode="inter_word"
-                    android:padding="20dp"/>
-            </RelativeLayout>
-
-        </RelativeLayout>
+                    android:fontFamily="@font/poppins"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:padding="10dp"
+                    />
+        </LinearLayout>
     </ScrollView>
 
     <FrameLayout

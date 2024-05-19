@@ -133,12 +133,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:src="@drawable/armstretch"
-                            android:contentDescription="armstretch"/>
+                            android:contentDescription="@string/arms_stretch"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="Arm Stretch"
+                            android:text="@string/arms_stretch"
                             android:textColor="@color/black"/>
                     </LinearLayout>
                     <LinearLayout
@@ -151,13 +151,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:src="@drawable/armcircle"
-                            android:contentDescription="armcircle"/>
+                            android:contentDescription="@string/arm_circle"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
                             android:textColor="@color/black"
-                            android:text="Arm Circle"/>
+                            android:text="@string/arm_circle"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
@@ -168,14 +168,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:contentDescription="tricepstretch"
+                            android:contentDescription="@string/tricep_stretch"
                             android:src="@drawable/tricepstretch"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
                             android:textColor="@color/black"
-                            android:text="Tricep Stretch"/>
+                            android:text="@string/tricep_stretch"/>
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -202,7 +202,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:src="@drawable/jumpingjack"
-                            android:contentDescription="@string/jumpingjack"/>
+                            android:contentDescription="@string/jumping_jacks"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:src="@drawable/crunch"
-                            android:contentDescription="@string/crunch"/>
+                            android:contentDescription="@string/crunches"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:src="@drawable/mountainclimber"
-                            android:contentDescription="@string/mountainclimber"/>
+                            android:contentDescription="@string/mountain_climber"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -288,12 +288,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:src="@drawable/lunges"
-                            android:contentDescription="Lunges"/>
+                            android:contentDescription="@string/lunges"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="Lunges"
+                            android:text="@string/lunges"
                             android:textColor="@color/black"/>
                     </LinearLayout>
                     <LinearLayout

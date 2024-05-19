@@ -1,16 +1,29 @@
 package com.example.mobdevfinalprod;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.text.LineBreaker;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.ai.client.generativeai.BuildConfig;
 import com.google.ai.client.generativeai.GenerativeModel;
@@ -21,6 +34,8 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
+import org.w3c.dom.Text;
+
 import java.util.concurrent.Executor;
 
 /**
@@ -29,7 +44,7 @@ import java.util.concurrent.Executor;
  * create an instance of this fragment.
  */
 public class AIHelperPage extends Fragment {
-    private String API_KEY = "AIzaSyAl5AKJTlEnB1iqdLg9GonEVAKSWXIGZg4";
+    private static String API_KEY = "AIzaSyAl5AKJTlEnB1iqdLg9GonEVAKSWXIGZg4";
     TextView ai_response;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -76,42 +91,108 @@ public class AIHelperPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_work_out_a_i_page, container, false);
-        view.findViewById(R.id.nd_container).setVisibility(View.INVISIBLE);
-        ai_response = view.findViewById(R.id.ai_response);
 
-        GenerativeModel gm = new GenerativeModel("gemini-pro",API_KEY);
-        GenerativeModelFutures model = GenerativeModelFutures.from(gm);
-
-        view.findViewById(R.id.submit_ai_message).setOnClickListener(new View.OnClickListener() {
+        ImageButton send_button = view.findViewById(R.id.submit_ai_message);
+        LinearLayout conversation = view.findViewById(R.id.chat_container);
+        send_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                view.findViewById(R.id.nd_container).setVisibility(View.VISIBLE);
 
-                String question = ((EditText)view.findViewById(R.id.ai_message_request)).getText().toString();
-                if(!question.isEmpty()) {
-                    Content content = new Content.Builder().addText("in short sentences only. DO NOT ANSWER IF IT IS NOT HEALTH AND FITNESS RELATED" + question).build();
-
-                    Executor executor = AsyncTask.SERIAL_EXECUTOR;
-
-                    ListenableFuture<GenerateContentResponse> response = model.generateContent(content);
-                    Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
-                        @Override
-                        public void onSuccess(GenerateContentResponse result) {
-                            getActivity().runOnUiThread(()->{
-                                ai_response.setText(result.getText());
-                            });
-                        }
-                        @Override
-                        public void onFailure(Throwable t) {
-                            getActivity().runOnUiThread(()->{
-                                ai_response.setText(t.toString());
-                            });
-                        }
-                    },executor);
+                InputMethodManager imm =getSystemService(v.getContext(), InputMethodManager.class);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                String question = ((EditText) view.findViewById(R.id.ai_message_request)).getText().toString();
+                ((EditText)view.findViewById(R.id.ai_message_request)).setText("");
+                if(question.length() == 0) {
+                    Toast.makeText(v.getContext(), "Please enter a question", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    addUserQuestion(question,conversation,view);
+                    addAIResponse(question,conversation,view);
                 }
             }
         });
-
         return view;
+    }
+    private void addUserQuestion(String question, LinearLayout conversation,View v) {
+        TextView useQuestion = new TextView(v.getContext());
+        useQuestion.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+        useQuestion.setPadding(20, 20, 20, 20);
+        useQuestion.setTextColor(Color.BLACK);
+        useQuestion.setTextSize(14);
+        useQuestion.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+        Typeface customTypeface = ResourcesCompat.getFont(v.getContext(), R.font.poppins);
+        useQuestion.setTypeface(customTypeface);
+        useQuestion.setText(question);
+        useQuestion.setBackgroundResource(R.drawable.user_question_backround);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.topMargin = 20;
+        layoutParams.bottomMargin = 20;
+        layoutParams.gravity = Gravity.END;
+        useQuestion.setLayoutParams(layoutParams);
+
+        conversation.addView(useQuestion);
+    }
+    private void addAIResponse(String question, LinearLayout conversation, View v) {
+        Typeface customTypeface = ResourcesCompat.getFont(v.getContext(), R.font.poppins);
+        TextView initial = new TextView(v.getContext());
+        initial.setText("Fetching Response");
+        initial.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+        initial.setPadding(20, 20, 20, 20);
+        initial.setTextColor(Color.BLACK);
+        initial.setTextSize(14);
+        ImageView aiCharacter = new ImageView(v.getContext());
+        aiCharacter.setBackgroundResource(R.drawable.aihelper);
+        float scale = v.getContext().getResources().getDisplayMetrics().density;
+        int dpAsPixels = (int) (40 * scale + 0.5f);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(dpAsPixels, dpAsPixels);
+        aiCharacter.setLayoutParams(layoutParams);
+        conversation.addView(aiCharacter);
+        conversation.addView(initial);
+        getAIResponse(question, new ResponseCallback() {
+            @Override
+            public void onResponse(String response) {
+
+                TextView aiResponse = new TextView(v.getContext());
+                aiResponse.setText(response.replace("*",""));
+                aiResponse.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+                aiResponse.setPadding(20, 20, 20, 20);
+                aiResponse.setTextColor(Color.BLACK);
+                aiResponse.setTextSize(14);
+                aiResponse.setTypeface(customTypeface);
+
+                // Add the new TextView to the conversation
+                getActivity().runOnUiThread(()->{
+                    conversation.removeView(initial);
+                    conversation.addView(aiResponse);
+                });
+            }
+        });
+    }
+    protected static void getAIResponse(String prompt, ResponseCallback callback) {
+        GenerativeModel gm = new GenerativeModel("gemini-pro",API_KEY);
+        GenerativeModelFutures gmf = GenerativeModelFutures.from(gm);
+
+        Content content =  new Content.Builder().addText(prompt).build();
+        Executor executor = AsyncTask.SERIAL_EXECUTOR;
+        ListenableFuture<GenerateContentResponse> response = gmf.generateContent(content);
+        final String[] answer = {null};
+        Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
+            @Override
+            public void onSuccess(GenerateContentResponse result) {
+                callback.onResponse(result.getText());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                callback.onResponse("Error" + t.getMessage());
+            }
+        },executor);
+    }
+    interface ResponseCallback {
+        void onResponse(String response);
     }
 }
