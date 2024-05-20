@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.text.LineBreaker;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,15 +16,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Transaction;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class InDepthExerciseView extends AppCompatActivity {
 
@@ -47,6 +49,56 @@ public class InDepthExerciseView extends AppCompatActivity {
         if (exerciseName != null) {
             exerciseName = exerciseName.replaceAll(" ", "").toLowerCase();
         }
+
+        setExerciseImage(exerciseName);
+        setExerciseDescription(exerciseName);
+//        searchExercise(exerciseName);
+        findViewById(R.id.return_button).setOnClickListener(v -> finish());
+    }
+    private void searchExercise(String exerciseName, String exerciseDescription) {
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference exerciseReference = database.collection("exercise_descriptions").document(exerciseName);
+
+        database.runTransaction((Transaction.Function<Void>) transaction -> {
+            DocumentSnapshot snapshot = transaction.get(exerciseReference);
+            if (snapshot.exists()) {
+                runOnUiThread(() -> {
+                    TextView descriptionView = findViewById(R.id.exercise_description);
+                    descriptionView.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+                    descriptionView.setText(snapshot.get("description").toString());
+                });
+            } else {
+                Map<String, String> exercise = new HashMap<>();
+                exercise.put("exerciseName", exerciseName);
+                exercise.put("description", exerciseDescription);
+                transaction.set(exerciseReference, exercise);
+            }
+            return null;
+        }).addOnSuccessListener(aVoid -> {
+            // Transaction succeeded
+        }).addOnFailureListener(e -> {
+            runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Failed to add exercise", Toast.LENGTH_LONG).show());
+        });
+    }
+
+
+    private void setExerciseDescription(String exerciseName) {
+        TextView descriptionView = findViewById(R.id.exercise_description);
+        String prompt = exerciseName + "Give a description and how to do the exercise properly. Remove asterisks";
+        AIHelperPage.getAIResponse(prompt, new AIHelperPage.ResponseCallback() {
+            @Override
+            public void onResponse(String response) {
+                runOnUiThread(() -> {
+                    String answer = response;
+                    answer = answer.replace("*", "");
+                    descriptionView.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+                    descriptionView.setText(answer);
+                    searchExercise(exerciseName, answer);
+                });
+            }
+        });
+    }
+    private void setExerciseImage(String exerciseName) {
         ImageView imageView = findViewById(R.id.exercise_image);
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         StorageReference photoReference= storageReference.child("exercise_images/"+exerciseName+".png");
@@ -63,19 +115,11 @@ public class InDepthExerciseView extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No Such file or Path found!!", Toast.LENGTH_LONG).show();
             }
         });
-        TextView descriptionView = findViewById(R.id.exercise_description);
-        String prompt = exerciseName + "Give a description and how to do the exercise properly. Remove asterisks";
-        AIHelperPage.getAIResponse(prompt, new AIHelperPage.ResponseCallback() {
-            @Override
-            public void onResponse(String response) {
-                runOnUiThread(()->{
-                    String answer = response;
-                    answer = answer.replace("*","");
-                    descriptionView.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
-                    descriptionView.setText(answer);
-                });
-            }
-        });
-        findViewById(R.id.return_button).setOnClickListener(v -> finish());
+    }
+    interface ResponseCallback {
+        void onResponse(String response);
+    }
+    public interface SearchCallback {
+        void onSearchResult(boolean found);
     }
 }
