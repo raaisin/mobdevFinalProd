@@ -1,12 +1,25 @@
 package com.example.mobdevfinalprod;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.mobdevfinalprod.helperclasses.ExerciseCreator;
+import com.google.api.Distribution;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,10 +68,31 @@ public class DiscoverPage extends Fragment {
         }
     }
 
+    private List<String> exercises;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_discover_page, container, false);
+        Typeface customTypeface = ResourcesCompat.getFont(getContext(), R.font.poppins);
+        View view = inflater.inflate(R.layout.fragment_discover_page, container, false);
+        exercises = ExerciseCreator.createExercises();
+        ExerciseCreator.addExerciseToDatabase(exercises,getContext());
+        LinearLayout toAddContainer = view.findViewById(R.id.discover_container);
+        for(String exercise : exercises) {
+            TextView exerciseText = new TextView(getContext());
+            exerciseText.setText(exercise);
+            exerciseText.setTypeface(customTypeface);
+            exerciseText.setTextColor(Color.BLACK);
+            toAddContainer.addView(exerciseText);
+
+            exerciseText.setOnClickListener(event -> {
+                Intent intent = new Intent(getContext(),InDepthExerciseView.class);
+                intent.putExtra("exerciseName",exercise);
+                startActivity(intent);
+            });
+        }
+        return view;
+    }
+    private void createList() {
+
     }
 }
