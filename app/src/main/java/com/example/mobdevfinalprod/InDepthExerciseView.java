@@ -99,6 +99,7 @@ public class InDepthExerciseView extends AppCompatActivity {
         });
     }
     private void setExerciseImage(String exerciseName) {
+        exerciseName = exerciseName.replace(" ","").toLowerCase();
         ImageView imageView = findViewById(R.id.exercise_image);
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         StorageReference photoReference= storageReference.child("exercise_images/"+exerciseName+".png");
@@ -115,11 +116,5 @@ public class InDepthExerciseView extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No Such file or Path found!!", Toast.LENGTH_LONG).show();
             }
         });
-    }
-    interface ResponseCallback {
-        void onResponse(String response);
-    }
-    public interface SearchCallback {
-        void onSearchResult(boolean found);
     }
 }

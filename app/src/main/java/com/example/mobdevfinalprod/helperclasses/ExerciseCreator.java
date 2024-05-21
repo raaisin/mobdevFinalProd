@@ -13,10 +13,11 @@ import java.util.*;
 public class ExerciseCreator {
     public static List<String> createExercises(){
         List<String> exercises = new ArrayList<>();
-        Collections.addAll(exercises, "armcircle", "armstretch",
-                "crunch", "jumpingjack", "lunges", "mountainclimber", "squat", "stepup",
-                "tricepstretch", "pushup", "plank", "highknees", "burpee", "buttkick",
-                "bicyclecrunch", "flutterkick", "inchworm", "sideplank", "superman", "wallSit");
+        Collections.addAll(exercises,  "Arm Circle", "Arm Stretch", "Crunch",
+                "Jumping Jack", "Lunges",
+                "Mountain Climber", "Squat", "Step Up", "Tricep Stretch", "Push Up",
+                "Plank", "High Knees", "Burpee", "Butt Kick", "Bicycle Crunch",
+                "Flutter Kick", "Inchworm", "Side Plank", "Superman", "Wall Sit");
         return exercises;
     }
     public static void addExerciseToDatabase(List<String> exercises, Context context) {
@@ -30,12 +31,13 @@ public class ExerciseCreator {
 
                 if (!snapshot.exists()) {
                     Map<String, String> exerciseMap = new HashMap<>();
-                    exerciseMap.put("name", exercise);
+                    String exercise_name = exercise.replace(" ","").toLowerCase();
+                    exerciseMap.put("name", exercise_name);
                     transaction.set(exerciseReference, exerciseMap);
                 }
                 return null;
             }).addOnSuccessListener(aVoid -> {
-                Toast.makeText(context, "Exercise added to database", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Exercise added to database", Toast.LENGTH_SHORT).show();
             }).addOnFailureListener(e -> {
                 Toast.makeText(context, "Exercise not added to database", Toast.LENGTH_SHORT).show();
             });
