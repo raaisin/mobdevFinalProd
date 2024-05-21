@@ -37,10 +37,95 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"/>
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/exercise_list_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/confirm_make_new_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/black"
+                    android:text="@string/confirm_create_new"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:paddingHorizontal="10dp">
+                        <ImageButton
+                            android:id="@+id/confirm_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/square_button_main_color"
+                            android:backgroundTint="#04B664"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="20sp"
+                            android:layout_centerInParent="true"/>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:paddingHorizontal="10dp">
+                        <ImageButton
+                            android:id="@+id/cancel_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/square_button_main_color"
+                            android:backgroundTint="#D60404"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/no"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="20sp"
+                            android:layout_centerInParent="true"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/create_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/create_routine_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/square_button_main_color"
+                    android:backgroundTint="@color/main_color" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_routine"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
 

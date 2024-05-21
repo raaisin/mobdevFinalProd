@@ -17,6 +17,10 @@
         android:theme="@style/Theme.MobdevFinalProd"
         tools:targetApi="31">
         <activity
+            android:name=".CreateExerciseRoutine"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".InDepthExerciseView"
             android:exported="false" />
         <activity

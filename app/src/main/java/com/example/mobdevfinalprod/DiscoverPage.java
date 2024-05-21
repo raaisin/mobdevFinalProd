@@ -1,6 +1,7 @@
 package com.example.mobdevfinalprod;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,11 +19,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobdevfinalprod.helperclasses.DatabaseOperations;
 import com.example.mobdevfinalprod.helperclasses.ExerciseCreator;
 import com.example.mobdevfinalprod.helperclasses.MyAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,6 +37,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -87,16 +91,33 @@ public class DiscoverPage extends Fragment {
         }
     }
 
-    private List<String> exercises;
+    protected static List<String> exercises;
+    private ImageButton createRoutineButton;
+    private LinearLayout confirm_container;
+    private ImageButton confirmButton;
+    private ImageButton cancelButton;
+    private boolean isConfirmed;
+    public static Map<String, Object> data;
+    public static int counter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_discover_page, container, false);
         exercises = ExerciseCreator.createExercises();
         ExerciseCreator.addExerciseToDatabase(exercises,getContext());
-        LinearLayout personalExercises = view.findViewById(R.id.custom_exercise_container);
         RecyclerView recyclerView = view.findViewById(R.id.exercise_list_recyclerView);
-        personalExercises.removeView(recyclerView);
+        LinearLayout personalExercises = view.findViewById(R.id.custom_exercise_container);
+        confirm_container = view.findViewById(R.id.confirm_make_new_container);
+        createRoutineButton = view.findViewById(R.id.create_routine_button);
+        confirmButton = view.findViewById(R.id.confirm_button);
+        cancelButton = view.findViewById(R.id.cancel_button);
+        data = new HashMap<>();
+        isConfirmed = false;
+        counter = 1;
+
+        recyclerView.setVisibility(View.GONE);
+        loadAllExercises(view);
+        confirm_container.setVisibility(View.GONE);
 
         searchCustomExerciseDatabase(username, exists -> {
             if(exists){
@@ -107,15 +128,42 @@ public class DiscoverPage extends Fragment {
             }
         });
 
+        createRoutineButton.setOnClickListener(v -> {
+            confirm_container.setVisibility(View.VISIBLE);
+        });
+        confirmButton.setOnClickListener(v -> {
+            if(!isConfirmed) {
+                confirm_container.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                personalExercises.setVisibility(View.GONE);
+                isConfirmed = true;
+            }
+            else {
+                DatabaseOperations.deleteUserDocument(username);
+                DatabaseOperations.insertDataToDatabase(username,data);
+                restartActivity();
+            }
+        });
+        cancelButton.setOnClickListener(v -> {
+            confirm_container.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
+            confirm_container.setVisibility(View.GONE);
+            personalExercises.setVisibility(View.VISIBLE);
+        });
+
         return view;
     }
 
-    private void restartActivity(Activity activity) {
-        Intent intent = new Intent(activity, activity.getClass());
-        activity.finish();
-        startActivity(intent);
+    private void restartActivity() {
+        Activity activity = getActivity();
+        if (activity != null) {
+            Intent intent = new Intent(activity, activity.getClass());
+            activity.finish();
+            startActivity(intent);
+        }
     }
     private void displayAllCustomizedExercise(LinearLayout personalExercises, String username) {
+        personalExercises.setVisibility(View.VISIBLE);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference reference = database.collection("customized_exercise").document(username);
         reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -194,7 +242,7 @@ public class DiscoverPage extends Fragment {
     private void loadAllExercises(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.exercise_list_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new MyAdapter(getContext(),exercises));
+        recyclerView.setAdapter(new MyAdapter(username,getContext(),exercises));
     }
     private void setImageViewLayout(ImageView imageView, Bitmap bitmap, LinearLayout layout) {
         imageView.setImageBitmap(bitmap);

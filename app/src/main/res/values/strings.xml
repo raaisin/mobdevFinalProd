@@ -39,4 +39,8 @@
     <string name="tricep_stretch">Tricep Stretch</string>
     <string name="lunges">Lunges</string>
     <string name="custom_exercise">Your Customized Daily Exercise</string>
+    <string name="create_routine">Create New Routine</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="confirm_create_new">Are You Sure You Want To Create New Routine?</string>
 </resources>
