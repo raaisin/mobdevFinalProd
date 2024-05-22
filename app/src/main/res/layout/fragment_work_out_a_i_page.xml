@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".AIHelperPage"
     android:backgroundTint="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
