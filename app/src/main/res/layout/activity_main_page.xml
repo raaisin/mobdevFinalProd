@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
     </LinearLayout>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_page_tabs"
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
         app:tabTextColor="@color/white"
         app:tabIndicatorColor="#FFFFFF"
         app:tabIndicatorGravity="top"
-        app:tabIndicatorFullWidth="true">
+        app:tabTextColor="@color/white">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/training"

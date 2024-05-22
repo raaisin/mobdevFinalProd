@@ -26,6 +26,26 @@
     <string name="welcome_back">WELCOME BACK,</string>
     <string name="username_here">username here</string>
     <string name="kick_off">Kick off your journey with these exercises.</string>
+
+    <string name="what_is_BMI"> BMI is a useful measure of overweight and obesity.
+                                BMI is an estimate of body fat and a good gauge of your risk
+                                for diseases that can occur with more body fat.
+                                The higher your BMI, the higher your risk for certain diseases
+                                such as heart disease,high blood pressure, type 2 diabetes,
+                                gallstones, breathing problems, and certain cancers.
+    </string>
+    <string name="type">Type\n
+                        Underweight\n
+                        Normal\n
+                        Overweight\n
+                        Obesity
+    </string>
+    <string name="bmi"> BMI\n
+                        Below 18.5\n
+                        Below 18.5\n
+                        18.5 – 24.9\n
+                        30.0 and Above
+    </string>
     <string name="mountain_climber">Mountain Climber</string>
     <string name="mountainclimber">mountainclimber</string>
     <string name="crunches">Crunch</string>

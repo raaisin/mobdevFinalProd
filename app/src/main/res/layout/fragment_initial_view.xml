@@ -102,15 +102,15 @@
                     android:textSize="28sp" />
 
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
+                android:layout_height="14dp"
                 android:layout_margin="10dp"
+                android:fontFamily="@font/poppins"
+                android:text="Upper Body"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:text="@string/kick_off"/>
+                android:textColor="@color/black"/>
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
