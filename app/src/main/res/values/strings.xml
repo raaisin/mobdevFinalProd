@@ -26,6 +26,7 @@
     <string name="welcome_back">WELCOME BACK,</string>
     <string name="username_here">username here</string>
     <string name="kick_off">Kick off your journey with these exercises.</string>
+
     <string name="what_is_BMI"> BMI is a useful measure of overweight and obesity.
                                 BMI is an estimate of body fat and a good gauge of your risk
                                 for diseases that can occur with more body fat.
@@ -45,4 +46,21 @@
                         18.5 – 24.9\n
                         30.0 and Above
     </string>
+    <string name="mountain_climber">Mountain Climber</string>
+    <string name="mountainclimber">mountainclimber</string>
+    <string name="crunches">Crunch</string>
+    <string name="jumping_jacks">Jumping Jack</string>
+    <string name="squat">squat</string>
+    <string name="squats">Squat</string>
+    <string name="step_up">Step Up</string>
+    <string name="lorem">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</string>
+    <string name="arms_stretch">Arm Stretch</string>
+    <string name="arm_circle">Arm Circle</string>
+    <string name="tricep_stretch">Tricep Stretch</string>
+    <string name="lunges">Lunges</string>
+    <string name="custom_exercise">Your Customized Daily Exercise</string>
+    <string name="create_routine">Create New Routine</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="confirm_create_new">Are You Sure You Want To Create New Routine?</string>
 </resources>

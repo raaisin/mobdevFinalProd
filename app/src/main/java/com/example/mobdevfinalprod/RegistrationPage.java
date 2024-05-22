@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
 import com.google.firebase.firestore.auth.User;
 
@@ -113,7 +114,6 @@ public class RegistrationPage extends Fragment {
                     users.put("username",username);
                     users.put("password",password);
 
-                    //find if user already registerd
                     DocumentReference userReference = database.collection("users").document(username);
 
                     database.runTransaction((Transaction.Function<Void>) transaction -> {
@@ -121,10 +121,11 @@ public class RegistrationPage extends Fragment {
                         if (snapshot.exists()) {
                             textView.setText("Username is already existing");
                             textView.setTextColor(Color.RED);
+                            throw new FirebaseFirestoreException("User already exist", FirebaseFirestoreException.Code.ALREADY_EXISTS);
                         }
-
-                        // Username does not exist, proceed with registration
-                        transaction.set(userReference, users);
+                        else {
+                            transaction.set(userReference, users);
+                        }
                         return null;
                     }).addOnSuccessListener(aVoid -> {
                         textView.setText("Registration successful");
