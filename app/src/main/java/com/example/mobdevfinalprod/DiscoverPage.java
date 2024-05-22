@@ -141,7 +141,9 @@ public class DiscoverPage extends Fragment {
             else {
                 DatabaseOperations.deleteUserDocument(username);
                 DatabaseOperations.insertDataToDatabase(username,data);
-                restartActivity();
+                confirm_container.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+                displayAllCustomizedExercise(personalExercises, username);
             }
         });
         cancelButton.setOnClickListener(v -> {
@@ -153,7 +155,6 @@ public class DiscoverPage extends Fragment {
 
         return view;
     }
-
     private void restartActivity() {
         Activity activity = getActivity();
         if (activity != null) {
