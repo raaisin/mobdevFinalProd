@@ -10,15 +10,16 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainPage extends AppCompatActivity {
-    private TabLayout tabs;
-    private Fragment initialViewFragment;
+    private TabLayout tabs;private Fragment initialViewFragment;
     private Fragment discoverPageFragment;
     private Fragment reportPageFragment;
     private Fragment aIHelperFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
         tabs = findViewById(R.id.main_page_tabs);
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
