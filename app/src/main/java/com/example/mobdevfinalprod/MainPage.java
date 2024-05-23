@@ -31,7 +31,7 @@ public class MainPage extends AppCompatActivity {
                         fragment = new InitialView(username);
                         break;
                     case 1:
-                        fragment = new DiscoverPage();
+                        fragment = new DiscoverPage(username);
                         break;
                     case 2:
                         fragment = new ReportPage();

@@ -1,28 +1,16 @@
 package com.example.mobdevfinalprod;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mobdevfinalprod.helperclasses.DateUtils;
-import com.example.mobdevfinalprod.helperclasses.Item;
-import com.example.mobdevfinalprod.helperclasses.MyAdapter;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.mobdevfinalprod.helperclasses.ViewUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +71,8 @@ public class InitialView extends Fragment {
         DateUtils.displayDates(view);
         username_container = view.findViewById(R.id.username_init);
         username_container.setText(username);
+
+        ViewUtil.setImageViewsClickable(view,R.id.first_linearLayout,R.id.second_linearLayout,R.id.third_linearLayout);
         return view;
     }
 }
