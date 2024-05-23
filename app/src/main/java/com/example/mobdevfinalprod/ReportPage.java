@@ -53,7 +53,27 @@ public class ReportPage extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
+
     }
+
+
+    public double calculateCalorie(double height, double weight, int age, boolean gender){
+
+        double BMR;
+        if(gender){
+            BMR = (10*weight) + (6.25*height) - (double)(5*age) + 5;
+        }
+        else{
+            BMR = (10*weight) + (6.25*height) - (double)(5*age) - 161;
+        }
+
+        return BMR;
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
