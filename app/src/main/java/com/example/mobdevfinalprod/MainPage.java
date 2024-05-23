@@ -14,7 +14,6 @@ public class MainPage extends AppCompatActivity {
     private Fragment discoverPageFragment;
     private Fragment reportPageFragment;
     private Fragment aIHelperFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
