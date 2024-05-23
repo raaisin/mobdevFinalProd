@@ -144,6 +144,7 @@ public class DiscoverPage extends Fragment {
                 confirm_container.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.GONE);
                 displayAllCustomizedExercise(personalExercises, username);
+//                restartActivity();
             }
         });
         cancelButton.setOnClickListener(v -> {

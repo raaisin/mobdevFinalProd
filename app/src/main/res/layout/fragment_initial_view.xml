@@ -105,12 +105,15 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="14dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:fontFamily="@font/poppins"
-                android:text="Upper Body"
+                android:text="@string/kick_off"
                 android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:height="18dp"/>
+
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
