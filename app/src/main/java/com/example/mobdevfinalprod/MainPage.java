@@ -10,7 +10,11 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainPage extends AppCompatActivity {
-    private TabLayout tabs;
+    private TabLayout tabs;private Fragment initialViewFragment;
+    private Fragment discoverPageFragment;
+    private Fragment reportPageFragment;
+    private Fragment aIHelperFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,29 +23,54 @@ public class MainPage extends AppCompatActivity {
         tabs = findViewById(R.id.main_page_tabs);
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
-        getSupportFragmentManager().beginTransaction().replace(R.id.changing_layout, new InitialView(username))
-                .addToBackStack(null).commit();
+
+        initialViewFragment = new InitialView(username);
+        discoverPageFragment = new DiscoverPage(username);
+        reportPageFragment = new ReportPage();
+        aIHelperFragment = new AIHelperPage();
+
+        // Add fragments to the FragmentManager
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.changing_layout, initialViewFragment, "InitialView");
+        transaction.add(R.id.changing_layout, discoverPageFragment, "DiscoverPage").hide(discoverPageFragment);
+        transaction.add(R.id.changing_layout, reportPageFragment, "ReportPage").hide(reportPageFragment);
+        transaction.add(R.id.changing_layout, aIHelperFragment, "AIHelperPage").hide(aIHelperFragment);
+        transaction.commit();
+
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Fragment fragment = null;
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment = new InitialView(username);
+                        transaction.hide(discoverPageFragment);
+                        transaction.hide(reportPageFragment);
+                        transaction.hide(aIHelperFragment);
+                        transaction.show(initialViewFragment);
                         break;
                     case 1:
-                        fragment = new DiscoverPage(username);
+                        transaction.hide(initialViewFragment);
+                        transaction.hide(reportPageFragment);
+                        transaction.hide(aIHelperFragment);
+                        transaction.show(discoverPageFragment);
                         break;
                     case 2:
-                        fragment = new ReportPage();
+                        transaction.hide(initialViewFragment);
+                        transaction.hide(discoverPageFragment);
+                        transaction.hide(aIHelperFragment);
+                        transaction.show(reportPageFragment);
                         break;
                     case 3:
-                        fragment = new AIHelperPage();
+                        transaction.hide(initialViewFragment);
+                        transaction.hide(discoverPageFragment);
+                        transaction.hide(reportPageFragment);
+                        transaction.show(aIHelperFragment);
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.changing_layout, fragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.commit();
             }
 
             @Override
