@@ -10,10 +10,7 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainPage extends AppCompatActivity {
-    private TabLayout tabs;private Fragment initialViewFragment;
-    private Fragment discoverPageFragment;
-    private Fragment reportPageFragment;
-    private Fragment aIHelperFragment;
+    private TabLayout tabs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,65 +19,49 @@ public class MainPage extends AppCompatActivity {
         tabs = findViewById(R.id.main_page_tabs);
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
-
-        initialViewFragment = new InitialView(username);
-        discoverPageFragment = new DiscoverPage(username);
-        reportPageFragment = new ReportPage();
-        aIHelperFragment = new AIHelperPage();
-
         // Add fragments to the FragmentManager
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.changing_layout, initialViewFragment, "InitialView");
-        transaction.add(R.id.changing_layout, discoverPageFragment, "DiscoverPage").hide(discoverPageFragment);
-        transaction.add(R.id.changing_layout, reportPageFragment, "ReportPage").hide(reportPageFragment);
-        transaction.add(R.id.changing_layout, aIHelperFragment, "AIHelperPage").hide(aIHelperFragment);
-        transaction.commit();
+        FragmentTransaction initialTransaction = getSupportFragmentManager().beginTransaction();
+        initialTransaction.add(R.id.changing_layout, InitialView.newInstance(username), "InitialView");
+        initialTransaction.commit();
 
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment selectedFragment = null;
 
                 switch (tab.getPosition()) {
                     case 0:
-                        transaction.hide(discoverPageFragment);
-                        transaction.hide(reportPageFragment);
-                        transaction.hide(aIHelperFragment);
-                        transaction.show(initialViewFragment);
+                        selectedFragment = InitialView.newInstance(username);
                         break;
                     case 1:
-                        transaction.hide(initialViewFragment);
-                        transaction.hide(reportPageFragment);
-                        transaction.hide(aIHelperFragment);
-                        transaction.show(discoverPageFragment);
+                        selectedFragment = DiscoverPage.newInstance(username);
                         break;
                     case 2:
-                        transaction.hide(initialViewFragment);
-                        transaction.hide(discoverPageFragment);
-                        transaction.hide(aIHelperFragment);
-                        transaction.show(reportPageFragment);
+                        selectedFragment = new ReportPage();
                         break;
                     case 3:
-                        transaction.hide(initialViewFragment);
-                        transaction.hide(discoverPageFragment);
-                        transaction.hide(reportPageFragment);
-                        transaction.show(aIHelperFragment);
+                        selectedFragment = new AIHelperPage();
                         break;
                 }
 
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.commit();
+                if (selectedFragment != null) {
+                    transaction.replace(R.id.changing_layout, selectedFragment);
+                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    transaction.commit();
+                }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                // No action needed for unselection
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                // No action needed for reselection
             }
         });
+
     }
 }

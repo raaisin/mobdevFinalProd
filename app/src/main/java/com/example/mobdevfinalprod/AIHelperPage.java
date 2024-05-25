@@ -119,7 +119,7 @@ public class AIHelperPage extends Fragment {
         useQuestion.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         useQuestion.setPadding(20, 20, 20, 20);
         useQuestion.setTextColor(Color.BLACK);
-        useQuestion.setTextSize(14);
+        useQuestion.setTextSize(12);
         useQuestion.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
         Typeface customTypeface = ResourcesCompat.getFont(v.getContext(), R.font.poppins);
         useQuestion.setTypeface(customTypeface);
@@ -144,7 +144,7 @@ public class AIHelperPage extends Fragment {
         initial.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         initial.setPadding(20, 20, 20, 20);
         initial.setTextColor(Color.BLACK);
-        initial.setTextSize(14);
+        initial.setTextSize(12);
         ImageView aiCharacter = new ImageView(v.getContext());
         aiCharacter.setBackgroundResource(R.drawable.aihelper);
         float scale = v.getContext().getResources().getDisplayMetrics().density;
@@ -162,7 +162,7 @@ public class AIHelperPage extends Fragment {
                 aiResponse.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
                 aiResponse.setPadding(20, 20, 20, 20);
                 aiResponse.setTextColor(Color.BLACK);
-                aiResponse.setTextSize(14);
+                aiResponse.setTextSize(12);
                 aiResponse.setTypeface(customTypeface);
 
                 // Add the new TextView to the conversation

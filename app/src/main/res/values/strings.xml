@@ -63,4 +63,8 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="confirm_create_new">Are You Sure You Want To Create New Routine?</string>
+    <string name="AI_inquiry">Type your Inquiries here</string>
+    <string name="submit_ai_inquiry">Submit AI Inquiry</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">confirm</string>
 </resources>

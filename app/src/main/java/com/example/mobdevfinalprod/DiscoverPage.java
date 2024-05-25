@@ -1,6 +1,5 @@
 package com.example.mobdevfinalprod;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,14 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,68 +29,20 @@ import com.example.mobdevfinalprod.helperclasses.DatabaseOperations;
 import com.example.mobdevfinalprod.helperclasses.ExerciseCreator;
 import com.example.mobdevfinalprod.helperclasses.MyAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.api.Distribution;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DiscoverPage#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DiscoverPage extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    private String username;
-    public DiscoverPage() {
-        // Required empty public constructor
-    }
-    public DiscoverPage(String username) {
-        this.username = username;
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DiscoverPage.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DiscoverPage newInstance(String param1, String param2) {
-        DiscoverPage fragment = new DiscoverPage();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    private static final String ARG_USERNAME = "username";
     protected static List<String> exercises;
     private ImageButton createRoutineButton;
     private LinearLayout confirm_container;
@@ -99,10 +51,33 @@ public class DiscoverPage extends Fragment {
     private boolean isConfirmed;
     public static Map<String, Object> data;
     public static int counter;
+    private String username;
+    private ProgressBar loadingIndicator;
+    public DiscoverPage() {
+        // Required empty public constructor
+    }
+    public static DiscoverPage newInstance(String param1) {
+        DiscoverPage fragment = new DiscoverPage();
+        Bundle args = new Bundle();
+        args.putString(ARG_USERNAME, param1);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            username = getArguments().getString(ARG_USERNAME);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_discover_page, container, false);
+        loadingIndicator = view.findViewById(R.id.loading_indicator);
         exercises = ExerciseCreator.createExercises();
         ExerciseCreator.addExerciseToDatabase(exercises,getContext());
         RecyclerView recyclerView = view.findViewById(R.id.exercise_list_recyclerView);
@@ -114,7 +89,7 @@ public class DiscoverPage extends Fragment {
         data = new HashMap<>();
         isConfirmed = false;
         counter = 1;
-
+        loadingIndicator.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         loadAllExercises(view);
         confirm_container.setVisibility(View.GONE);
@@ -122,9 +97,11 @@ public class DiscoverPage extends Fragment {
         searchCustomExerciseDatabase(username, exists -> {
             if(exists){
                 displayAllCustomizedExercise(personalExercises, username);
+                loadingIndicator.setVisibility(View.GONE);
             }
             else {
-                noExerciseFound(personalExercises);
+                noExerciseFound(personalExercises,"No customized exercises for " + username + " found on database.");
+                loadingIndicator.setVisibility(View.GONE);
             }
         });
 
@@ -140,11 +117,12 @@ public class DiscoverPage extends Fragment {
             }
             else {
                 DatabaseOperations.deleteUserDocument(username);
-                DatabaseOperations.insertDataToDatabase(username,data);
+                DatabaseOperations.insertDataToDatabase(username, data);
                 confirm_container.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.GONE);
-                displayAllCustomizedExercise(personalExercises, username);
-//                restartActivity();
+                displayAllCustomizedExercise(personalExercises,username);
+                noExerciseFound(personalExercises,"Refresh to see your customized exercise changes.");
+                addRefresh(personalExercises);
             }
         });
         cancelButton.setOnClickListener(v -> {
@@ -156,15 +134,25 @@ public class DiscoverPage extends Fragment {
 
         return view;
     }
-    private void restartActivity() {
-        Activity activity = getActivity();
-        if (activity != null) {
-            Intent intent = new Intent(activity, activity.getClass());
-            activity.finish();
-            startActivity(intent);
-        }
+    private void addRefresh(LinearLayout personalExercises) {
+        TextView refresh = new TextView(getContext());
+        refresh.setText("Click here to Refresh");
+        refresh.setPadding(50,0,0,0);
+        refresh.setTextColor(Color.BLACK);
+        refresh.setOnClickListener(click -> {
+            restartActivity(getContext(),username);
+        });
+        personalExercises.addView(refresh);
     }
+    private void restartActivity(Context context, String username) {
+        Intent intent = new Intent(context, MainPage.class);
+        intent.putExtra("username", username);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
     private void displayAllCustomizedExercise(LinearLayout personalExercises, String username) {
+        personalExercises.removeAllViews();
         personalExercises.setVisibility(View.VISIBLE);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference reference = database.collection("customized_exercise").document(username);
@@ -173,11 +161,12 @@ public class DiscoverPage extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()) {
                     Map<String,Object> data = documentSnapshot.getData();
-                    int counter = 1;
                     for(final String exerciseName: data.keySet()) {
                         String fieldName = exerciseName;
                         String exerciseNamesForReal = String.valueOf(data.get(fieldName));
                         LinearLayout exerciseLayout = new LinearLayout(getContext());
+                        ProgressBar loading = new ProgressBar(getContext());
+                        exerciseLayout.addView(loading);
                         exerciseLayout.setOrientation(LinearLayout.VERTICAL);
                         String exerciseDatabaseName = exerciseNamesForReal.replace(" ","").toLowerCase();
 
@@ -194,6 +183,7 @@ public class DiscoverPage extends Fragment {
                                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                                 ImageView imageView = new ImageView(getContext());
                                 setImageViewLayout(imageView, bitmap, exerciseLayout);
+                                exerciseLayout.removeView(loading);
                                 exerciseLayout.addView(imageView);
                                 exerciseLayout.setBackgroundResource(R.drawable.exercise_layout_background);
 
@@ -214,9 +204,9 @@ public class DiscoverPage extends Fragment {
             }
         });
     }
-    private void noExerciseFound(LinearLayout personalExercises) {
+    private void noExerciseFound(LinearLayout personalExercises, String message) {
         TextView createNew = new TextView(getContext());
-        createNew.setText("No customized exercises for " + username + " found on database.");
+        createNew.setText(message);
         createNew.setTextColor(Color.RED);
         createNew.setTextSize(14);
         createNew.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -268,4 +258,5 @@ public class DiscoverPage extends Fragment {
     public interface BooleanCallback {
         void onResponse(boolean exists);
     }
+
 }
