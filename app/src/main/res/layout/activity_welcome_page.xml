@@ -35,7 +35,7 @@
             android:textSize="35dp"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/roboto_black"
             android:textColor="@color/black"/>
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/welcome_message"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/roboto"
             android:textColor="@color/black"
             android:text="@string/welcome_message"
             android:textAlignment="center"
@@ -68,7 +68,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:textColor="@color/white"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/roboto"
                 android:textSize="20sp"/>
         </RelativeLayout>
 
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/already"
-                android:fontFamily="@font/poppins"/>
+                android:fontFamily="@font/roboto"/>
             <TextView
                 android:id="@+id/go_to_login"
                 android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                 android:paddingStart="10dp"
                 android:textStyle="bold"
                 android:textColor="@color/main_color"
-                android:fontFamily="@font/poppins"/>
+                android:fontFamily="@font/roboto"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

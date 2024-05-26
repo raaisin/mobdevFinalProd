@@ -17,7 +17,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,16 +37,13 @@ import com.google.firebase.storage.StorageReference;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
+import java.util.Objects;
 
 public class DiscoverPage extends Fragment {
 
     private static final String ARG_USERNAME = "username";
     protected static List<String> exercises;
-    private ImageButton createRoutineButton;
     private LinearLayout confirm_container;
-    private ImageButton confirmButton;
-    private ImageButton cancelButton;
     private boolean isConfirmed;
     public static Map<String, Object> data;
     public static int counter;
@@ -83,9 +79,9 @@ public class DiscoverPage extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.exercise_list_recyclerView);
         LinearLayout personalExercises = view.findViewById(R.id.custom_exercise_container);
         confirm_container = view.findViewById(R.id.confirm_make_new_container);
-        createRoutineButton = view.findViewById(R.id.create_routine_button);
-        confirmButton = view.findViewById(R.id.confirm_button);
-        cancelButton = view.findViewById(R.id.cancel_button);
+        ImageButton createRoutineButton = view.findViewById(R.id.create_routine_button);
+        ImageButton confirmButton = view.findViewById(R.id.confirm_button);
+        ImageButton cancelButton = view.findViewById(R.id.cancel_button);
         data = new HashMap<>();
         isConfirmed = false;
         counter = 1;
@@ -121,8 +117,7 @@ public class DiscoverPage extends Fragment {
                 confirm_container.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.GONE);
                 displayAllCustomizedExercise(personalExercises,username);
-                noExerciseFound(personalExercises,"Refresh to see your customized exercise changes.");
-                addRefresh(personalExercises);
+                noExerciseFound(personalExercises,"Ready for your workout? Tap here to see your personalized exercises!");
             }
         });
         cancelButton.setOnClickListener(v -> {
@@ -134,20 +129,11 @@ public class DiscoverPage extends Fragment {
 
         return view;
     }
-    private void addRefresh(LinearLayout personalExercises) {
-        TextView refresh = new TextView(getContext());
-        refresh.setText("Click here to Refresh");
-        refresh.setPadding(50,0,0,0);
-        refresh.setTextColor(Color.BLACK);
-        refresh.setOnClickListener(click -> {
-            restartActivity(getContext(),username);
-        });
-        personalExercises.addView(refresh);
-    }
     private void restartActivity(Context context, String username) {
         Intent intent = new Intent(context, MainPage.class);
         intent.putExtra("username", username);
         startActivity(intent);
+        assert getActivity() != null;
         getActivity().finish();
     }
 
@@ -161,11 +147,12 @@ public class DiscoverPage extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()) {
                     Map<String,Object> data = documentSnapshot.getData();
+                    assert data != null;
                     for(final String exerciseName: data.keySet()) {
-                        String fieldName = exerciseName;
-                        String exerciseNamesForReal = String.valueOf(data.get(fieldName));
+                        String exerciseNamesForReal = String.valueOf(data.get(exerciseName));
                         LinearLayout exerciseLayout = new LinearLayout(getContext());
                         ProgressBar loading = new ProgressBar(getContext());
+                        loading.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.secondary_color,null), android.graphics.PorterDuff.Mode.MULTIPLY);
                         exerciseLayout.addView(loading);
                         exerciseLayout.setOrientation(LinearLayout.VERTICAL);
                         String exerciseDatabaseName = exerciseNamesForReal.replace(" ","").toLowerCase();
@@ -210,9 +197,10 @@ public class DiscoverPage extends Fragment {
         createNew.setTextColor(Color.RED);
         createNew.setTextSize(14);
         createNew.setGravity(Gravity.CENTER_HORIZONTAL);
-        Typeface font = ResourcesCompat.getFont(getContext(), R.font.poppins);
+        Typeface font = ResourcesCompat.getFont(requireContext(), R.font.poppins);
         createNew.setTypeface(font);
         personalExercises.addView(createNew);
+        createNew.setOnClickListener(click->restartActivity(getContext(),username));
     }
     private void searchCustomExerciseDatabase(String username, BooleanCallback callback) {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
@@ -220,11 +208,7 @@ public class DiscoverPage extends Fragment {
         reference.get().addOnCompleteListener(task->{
             if(task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
-                if(document.exists()) {
-                    callback.onResponse(true);
-                } else {
-                    callback.onResponse(false);
-                }
+                callback.onResponse(document.exists());
             }
             else{
                 Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
@@ -251,7 +235,7 @@ public class DiscoverPage extends Fragment {
         exerciseNameTextView.setTextColor(Color.BLACK);
         exerciseNameTextView.setTextSize(20);
         exerciseNameTextView.setGravity(Gravity.CENTER_HORIZONTAL);
-        Typeface font = ResourcesCompat.getFont(getContext(), R.font.poppins_medium);
+        Typeface font = ResourcesCompat.getFont(requireContext(), R.font.poppins_medium);
         exerciseNameTextView.setTypeface(font);
     }
 

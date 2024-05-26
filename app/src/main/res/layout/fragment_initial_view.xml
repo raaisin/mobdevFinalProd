@@ -28,13 +28,13 @@
                     android:id="@+id/app_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="@string/teambangan"
                     android:textColor="@color/main_color"
-                    android:textSize="35sp"
-                    android:fontFamily="@font/poppins_extrabold"
+                    android:textSize="32sp"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="20dp"/>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,6 +51,7 @@
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:textColor="@color/black"
+                        android:fontFamily="@font/roboto"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -82,24 +83,24 @@
                 android:paddingVertical="10dp"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:background="@color/main_color">
+                android:background="@color/secondary_color">
                 <TextView
                     android:id="@+id/welcome_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/welcome_back"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:fontFamily="@font/poppins_bold"/>
+                    android:textColor="#03115C"
+                    android:textSize="28sp"
+                    android:fontFamily="@font/roboto_black"/>
 
                 <TextView
                     android:id="@+id/username_init"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/username_here"
                     android:textColor="@color/white"
-                    android:textSize="28sp" />
+                    android:textSize="26sp" />
 
             </LinearLayout>
 
@@ -107,12 +108,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/roboto"
                 android:text="@string/kick_off"
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:gravity="center_vertical"
-                android:height="18dp"/>
+                android:gravity="center_vertical"/>
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:text="@string/arms_stretch"
                             android:textColor="@color/black"/>
                     </LinearLayout>
@@ -159,7 +159,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:textColor="@color/black"
                             android:text="@string/arm_circle"/>
                     </LinearLayout>
@@ -177,7 +177,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:textColor="@color/black"
                             android:text="@string/tricep_stretch"/>
                     </LinearLayout>
@@ -210,7 +210,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:textColor="@color/black"
                             android:text="@string/jumping_jacks"/>
                     </LinearLayout>
@@ -228,7 +228,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:textColor="@color/black"
                             android:text="@string/crunches"/>
                     </LinearLayout>
@@ -246,7 +246,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:text="@string/mountain_climber"
                             android:textColor="@color/black"/>
                     </LinearLayout>
@@ -278,7 +278,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:text="@string/squats"
                             android:textColor="@color/black"/>
                     </LinearLayout>
@@ -296,7 +296,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:text="@string/lunges"
                             android:textColor="@color/black"/>
                     </LinearLayout>
@@ -314,7 +314,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:text="@string/step_up"
                             android:textColor="@color/black"/>
                     </LinearLayout>

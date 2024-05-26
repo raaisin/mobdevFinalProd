@@ -121,7 +121,7 @@ public class AIHelperPage extends Fragment {
         useQuestion.setTextColor(Color.BLACK);
         useQuestion.setTextSize(12);
         useQuestion.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-        Typeface customTypeface = ResourcesCompat.getFont(v.getContext(), R.font.poppins);
+        Typeface customTypeface = ResourcesCompat.getFont(v.getContext(), R.font.roboto);
         useQuestion.setTypeface(customTypeface);
         useQuestion.setText(question);
         useQuestion.setBackgroundResource(R.drawable.user_question_backround);
@@ -138,7 +138,7 @@ public class AIHelperPage extends Fragment {
         conversation.addView(useQuestion);
     }
     private void addAIResponse(String question, LinearLayout conversation, View v) {
-        Typeface customTypeface = ResourcesCompat.getFont(v.getContext(), R.font.poppins);
+        Typeface customTypeface = ResourcesCompat.getFont(v.getContext(), R.font.roboto);
         TextView initial = new TextView(v.getContext());
         initial.setText("Fetching Response");
         initial.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);

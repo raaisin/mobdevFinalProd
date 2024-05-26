@@ -67,4 +67,7 @@
     <string name="submit_ai_inquiry">Submit AI Inquiry</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">confirm</string>
+    <string name="exercise_name">exercise name</string>
+    <string name="image_of_exercise_will_display_here">Image of Exercise will display here</string>
+    <string name="personalized_exercise_list">Personalized Exercise List</string>
 </resources>

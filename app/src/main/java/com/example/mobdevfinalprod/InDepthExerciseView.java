@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.text.LineBreaker;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +68,7 @@ public class InDepthExerciseView extends AppCompatActivity {
                     TextView descriptionView = findViewById(R.id.exercise_description);
                     descriptionView.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
                     descriptionView.setText(snapshot.get("description").toString());
+                    findViewById(R.id.text_loading_indicator).setVisibility(View.GONE);
                 });
             } else {
                 Map<String, String> exercise = new HashMap<>();
