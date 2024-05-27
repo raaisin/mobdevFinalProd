@@ -95,7 +95,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:paddingRight="5dp">
+                android:paddingEnd="5dp">
                 <ImageButton
                     android:contentDescription="@string/confirm"
                     android:id="@+id/confirm_button"
@@ -117,7 +117,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:paddingLeft="5dp">
+                android:paddingStart="5dp">
                 <ImageButton
                     android:contentDescription="@string/cancel"
                     android:id="@+id/cancel_button"
@@ -141,7 +141,7 @@
         android:id="@+id/create_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_margin="10dp">
 
         <ImageButton
             android:id="@+id/create_routine_button"
@@ -151,6 +151,7 @@
             android:backgroundTint="@color/main_color"
             android:contentDescription="@string/create_routine"/>
         <TextView
+            android:id="@+id/text_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_routine"

@@ -84,8 +84,7 @@ public class LoginPage extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                RegistrationPage registrationPage = new RegistrationPage();
-                WelcomePage.changeToRegistration(fragmentManager,registrationPage);
+                WelcomePage.changeToRegistration(fragmentManager);
             }
         });
 
