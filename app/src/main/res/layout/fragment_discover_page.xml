@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="#FFFFFF"
     tools:context=".DiscoverPage">
     <TextView
         android:id="@+id/page_title"
@@ -73,21 +73,19 @@
     android:id="@+id/confirm_button_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingHorizontal="10dp"
-    android:paddingBottom="10dp">
+    android:orientation="vertical">
     <LinearLayout
         android:id="@+id/confirm_make_new_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:layout_marginHorizontal="10dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:fontFamily="@font/poppins"
-            android:textColor="@color/black"
+            android:textColor="@color/secondary_color"
             android:text="@string/confirm_create_new"/>
         <LinearLayout
             android:layout_width="match_parent"

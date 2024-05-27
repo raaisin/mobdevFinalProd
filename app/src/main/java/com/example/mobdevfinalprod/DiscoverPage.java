@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -232,7 +233,7 @@ public class DiscoverPage extends Fragment {
     }
     private void setTextViewLayout(TextView exerciseNameTextView, String exerciseNamesForReal) {
         exerciseNameTextView.setText(exerciseNamesForReal);
-        exerciseNameTextView.setTextColor(Color.BLACK);
+        exerciseNameTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondary_color));
         exerciseNameTextView.setTextSize(20);
         exerciseNameTextView.setGravity(Gravity.CENTER_HORIZONTAL);
         Typeface font = ResourcesCompat.getFont(requireContext(), R.font.poppins_medium);

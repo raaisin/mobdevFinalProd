@@ -22,6 +22,8 @@ public class WelcomePage extends AppCompatActivity {
     public static LoginPage loginPage;
     private ImageButton getting_started;
     private TextView already_have;
+    private Fragment LoginPageFragment;
+    private Fragment RegisterPageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,10 @@ public class WelcomePage extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, registrationPage).commit();
             }
         });
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        LoginPageFragment = new LoginPage();
+        RegisterPageFragment = new RegistrationPage();
         already_have = findViewById(R.id.go_to_login);
         already_have.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,14 +55,14 @@ public class WelcomePage extends AppCompatActivity {
     }
     public static void changeToRegistration(FragmentManager fragmentManager, RegistrationPage registrationPage) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.from_left_to_right, 0);
         transaction.replace(R.id.frame_layout, registrationPage);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
     public static void changeToLogin(FragmentManager fragmentManager, LoginPage loginPage){
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frame_layout, loginPage);
-        transaction.addToBackStack(null);
+        transaction.setCustomAnimations(R.anim.from_right_to_left, 0);
+        transaction.replace(R.id.frame_layout,loginPage);
         transaction.commit();
     }
 }

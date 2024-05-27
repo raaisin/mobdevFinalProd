@@ -16,6 +16,7 @@ public class MainPage extends AppCompatActivity {
     private Fragment discoverPage;
     private Fragment reportPage;
     private Fragment aiHelperPage;
+    private int selectedTab = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class MainPage extends AppCompatActivity {
         String username = intent.getStringExtra("username");
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        final FragmentTransaction[] transaction = {fragmentManager.beginTransaction()};
         initialView = fragmentManager.findFragmentByTag("InitialView");
         discoverPage = fragmentManager.findFragmentByTag("DiscoverPage");
         reportPage = fragmentManager.findFragmentByTag("ReportPage");
@@ -35,29 +36,29 @@ public class MainPage extends AppCompatActivity {
 
         if (initialView == null) {
             initialView = InitialView.newInstance(username);
-            transaction.add(R.id.changing_layout, initialView, "InitialView");
+            transaction[0].add(R.id.changing_layout, initialView, "InitialView");
         }
 
         if (discoverPage == null) {
             discoverPage = DiscoverPage.newInstance(username);
-            transaction.add(R.id.changing_layout, discoverPage, "DiscoverPage");
+            transaction[0].add(R.id.changing_layout, discoverPage, "DiscoverPage");
         }
 
         if (reportPage == null) {
             reportPage = new ReportPage();
-            transaction.add(R.id.changing_layout, reportPage, "ReportPage");
+            transaction[0].add(R.id.changing_layout, reportPage, "ReportPage");
         }
 
         if (aiHelperPage == null) {
             aiHelperPage = new AIHelperPage();
-            transaction.add(R.id.changing_layout, aiHelperPage, "AIHelperPage");
+            transaction[0].add(R.id.changing_layout, aiHelperPage, "AIHelperPage");
         }
 
         // Hide all fragments except the initial one
-        transaction.hide(discoverPage);
-        transaction.hide(reportPage);
-        transaction.hide(aiHelperPage);
-        transaction.commit();
+        transaction[0].hide(discoverPage);
+        transaction[0].hide(reportPage);
+        transaction[0].hide(aiHelperPage);
+        transaction[0].commit();
 
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -74,19 +75,21 @@ public class MainPage extends AppCompatActivity {
                 switch (tab.getPosition()) {
                     case 0:
                         transaction.show(initialView);
+                        animate(0,transaction);
                         break;
                     case 1:
                         transaction.show(discoverPage);
+                        animate(1,transaction);
                         break;
                     case 2:
                         transaction.show(reportPage);
+                        animate(2,transaction);
                         break;
                     case 3:
                         transaction.show(aiHelperPage);
+                        animate(3,transaction);
                         break;
                 }
-
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 transaction.commit();
             }
 
@@ -100,5 +103,16 @@ public class MainPage extends AppCompatActivity {
                 // No action needed for reselection
             }
         });
+    }
+    private void animate(int index,FragmentTransaction transaction){
+
+        if(selectedTab > index) {
+            transaction.setCustomAnimations(R.anim.center_to_right,R.anim.from_right_to_left);
+            selectedTab = index;
+        }
+        else if(selectedTab < index) {
+            transaction.setCustomAnimations(R.anim.center_to_left,R.anim.from_left_to_right);
+            selectedTab = index;
+        }
     }
 }
