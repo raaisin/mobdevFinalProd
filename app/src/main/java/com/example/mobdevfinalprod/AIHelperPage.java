@@ -1,5 +1,6 @@
 package com.example.mobdevfinalprod;
 
+import static android.view.animation.Animation.ABSOLUTE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.graphics.text.LineBreaker;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.constraintlayout.motion.widget.MotionScene;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
@@ -17,6 +19,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -45,7 +51,6 @@ import java.util.concurrent.Executor;
  */
 public class AIHelperPage extends Fragment {
     private static String API_KEY = "AIzaSyAl5AKJTlEnB1iqdLg9GonEVAKSWXIGZg4";
-    private static final String restriction = "Only respond if it is health and exercise related if question is not health related, say you " + "response: I can't process it because it is not health related";
     TextView ai_response;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -108,7 +113,7 @@ public class AIHelperPage extends Fragment {
                 }
                 else {
                     addUserQuestion(question,conversation,view);
-                    addAIResponse("Question: "+question + ". " + restriction,conversation,view);
+                    addAIResponse(question,conversation,view);
                 }
             }
         });
@@ -165,9 +170,16 @@ public class AIHelperPage extends Fragment {
                 aiResponse.setTextSize(12);
                 aiResponse.setTypeface(customTypeface);
 
+                Animation slideAnimation = new TranslateAnimation(-1000f,0f,0,0);
+                slideAnimation.setDuration(800);
+                Animation fadeAnimation = new AlphaAnimation(0,1);
+                fadeAnimation.setDuration(800);
+
                 // Add the new TextView to the conversation
                 getActivity().runOnUiThread(()->{
                     conversation.removeView(initial);
+                    aiResponse.startAnimation(slideAnimation);
+                    aiResponse.startAnimation(fadeAnimation);
                     conversation.addView(aiResponse);
                 });
             }

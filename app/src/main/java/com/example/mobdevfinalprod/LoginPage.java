@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobdevfinalprod.helperclasses.AnimationClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -78,12 +79,12 @@ public class LoginPage extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login_page, container, false);
         login_status = view.findViewById(R.id.login_status);
+        view.findViewById(R.id.login_loading).setVisibility(View.GONE);
         view.findViewById(R.id.to_registration_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                RegistrationPage registrationPage = new RegistrationPage();
-                WelcomePage.changeToRegistration(fragmentManager,registrationPage);
+                WelcomePage.changeToRegistration(fragmentManager);
             }
         });
 
@@ -97,6 +98,8 @@ public class LoginPage extends Fragment {
                     login_status.setTextColor(Color.RED);
                     return;
                 }
+                view.findViewById(R.id.login_loading).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.login_text).setVisibility(View.GONE);
 
                 //find if user already registerd
                 database = FirebaseFirestore.getInstance();
@@ -113,14 +116,19 @@ public class LoginPage extends Fragment {
                                 //redirect sa main page and pass the username sa intent
                                 Intent intent = new Intent(getContext(),MainPage.class);
                                 intent.putExtra("username",username);
+                                view.setAnimation(AnimationClass.addFadeOutAnimation());
                                 startActivity(intent);
                             } else {
                                 login_status.setText("Wrong password");
                                 login_status.setTextColor(Color.RED);
+                                view.findViewById(R.id.login_loading).setVisibility(View.GONE);
+                                view.findViewById(R.id.login_text).setVisibility(View.VISIBLE);
                             }
                         } else {
                             login_status.setText("Username does not exist");
                             login_status.setTextColor(Color.RED);
+                            view.findViewById(R.id.login_loading).setVisibility(View.GONE);
+                            view.findViewById(R.id.login_text).setVisibility(View.VISIBLE);
                         }
                     }
                 });

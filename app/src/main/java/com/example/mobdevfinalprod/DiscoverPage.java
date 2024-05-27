@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,6 +50,7 @@ public class DiscoverPage extends Fragment {
     public static int counter;
     private String username;
     private ProgressBar loadingIndicator;
+    TextView createText;
     public DiscoverPage() {
         // Required empty public constructor
     }
@@ -82,6 +84,7 @@ public class DiscoverPage extends Fragment {
         ImageButton createRoutineButton = view.findViewById(R.id.create_routine_button);
         ImageButton confirmButton = view.findViewById(R.id.confirm_button);
         ImageButton cancelButton = view.findViewById(R.id.cancel_button);
+        createText = view.findViewById(R.id.text_create);
         data = new HashMap<>();
         isConfirmed = false;
         counter = 1;
@@ -103,12 +106,16 @@ public class DiscoverPage extends Fragment {
 
         createRoutineButton.setOnClickListener(v -> {
             confirm_container.setVisibility(View.VISIBLE);
+            createRoutineButton.setVisibility(View.GONE);
+            createText.setVisibility(View.GONE);
         });
         confirmButton.setOnClickListener(v -> {
             if(!isConfirmed) {
                 confirm_container.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
                 personalExercises.setVisibility(View.GONE);
+                createRoutineButton.setVisibility(View.VISIBLE);
+                createText.setVisibility(View.VISIBLE);
                 isConfirmed = true;
             }
             else {
@@ -123,8 +130,9 @@ public class DiscoverPage extends Fragment {
         cancelButton.setOnClickListener(v -> {
             confirm_container.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
-            confirm_container.setVisibility(View.GONE);
             personalExercises.setVisibility(View.VISIBLE);
+            createRoutineButton.setVisibility(View.VISIBLE);
+            createText.setVisibility(View.VISIBLE);
         });
 
         return view;
@@ -232,7 +240,7 @@ public class DiscoverPage extends Fragment {
     }
     private void setTextViewLayout(TextView exerciseNameTextView, String exerciseNamesForReal) {
         exerciseNameTextView.setText(exerciseNamesForReal);
-        exerciseNameTextView.setTextColor(Color.BLACK);
+        exerciseNameTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondary_color));
         exerciseNameTextView.setTextSize(20);
         exerciseNameTextView.setGravity(Gravity.CENTER_HORIZONTAL);
         Typeface font = ResourcesCompat.getFont(requireContext(), R.font.poppins_medium);
