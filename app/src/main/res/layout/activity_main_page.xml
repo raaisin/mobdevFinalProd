@@ -19,8 +19,8 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_page_tabs"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:tabTextColor="@color/white"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color"
         app:tabIndicatorColor="#FFFFFF"
         app:tabIndicatorGravity="top"
         app:tabIndicatorAnimationMode="elastic"

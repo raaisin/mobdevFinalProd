@@ -15,19 +15,37 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/roboto_black"
-            android:text="@string/health_insights"
-            android:textAlignment="textStart"
-            android:textColor="@color/secondary_color"
-            android:textSize="24sp"
-            android:paddingHorizontal="20dp"/>
-        <ScrollView
-            android:layout_gravity="top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp">
-            <LinearLayout
+            android:text="REPORT PAGE"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/BMILayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <LinearLayout
+            android:id="@+id/BMILayout"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/divider3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -68,17 +86,105 @@
                             app:layout_constraintRight_toRightOf="parent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:text="@string/male"/>
+                            android:text="BMI Calculator"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editHeightBMI"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="height (cm)"
+                                android:textColor="@android:color/darker_gray" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editWeightBMI"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/editHeightBMI">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="weight (kg)" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <EditText
+                            android:id="@+id/editResultBMI"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:text="BMI result"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/editWeightBMI" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".5"
-                        android:layout_margin="10dp">
-                        <ImageButton
-                            android:contentDescription="@string/female"
-                            android:id="@+id/female"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout4"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toTopOf="@+id/divider"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.32">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/textView7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="What is BMI?"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+
+                                    app:layout_constraintBottom_toTopOf="@+id/textView8"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/textView8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:justificationMode="inter_word"
+                                    android:padding="5dp"
+                                    android:text="@string/what_is_BMI"
+                                    android:textAlignment="center"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/divider"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
                             android:background="@drawable/gender_button"
@@ -121,17 +227,237 @@
                         android:layout_gravity="center_horizontal"
                         android:hint="height here"
                         android:textAlignment="center"
-                        android:textColorHint="#99575353"
-                        android:textColor="@color/black"
-                        android:inputType="numberDecimal"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/gender_button"
-                    android:padding="10dp">
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/divider4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/divider4"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@+id/divider6"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider4">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:id="@+id/editAgeCalorie"
+                                        android:layout_width="125dp"
+                                        android:layout_height="60dp"
+                                        android:paddingRight="10dp"
+                                        android:textAlignment="center"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:hint="Age"
+                                            android:textAlignment="center" />
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                    <View
+                                        android:id="@+id/divider5"
+                                        android:layout_width="1dp"
+                                        android:layout_height="match_parent"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+                                        app:layout_constraintStart_toEndOf="@+id/editAgeCalorie" />
+
+                                    <RadioGroup
+                                        android:id="@+id/radioGroup"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:paddingLeft="10dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/editAgeCalorie"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <TextView
+                                            android:id="@+id/textView5"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingRight="10dp"
+                                            android:text="Gender" />
+
+                                        <RadioButton
+                                            android:id="@+id/radioMale"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Male" />
+
+                                        <RadioButton
+                                            android:id="@+id/radioFemale"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Female" />
+                                    </RadioGroup>
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider6"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/linearLayout5" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="1dp"
+                        app:layout_constraintBottom_toBottomOf="@id/divider8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider6">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/radioGroup2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/editHeightCalorie"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="height (cm)"
+                                        android:textColor="@android:color/darker_gray" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/editWeightCalorie"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/editHeightCalorie">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="weight (kg)" />
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <RadioButton
+                                android:id="@+id/radioFit1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Sedentary" />
+
+                            <RadioButton
+                                android:id="@+id/radioFit2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Light ( 1-3 / week)" />
+
+                            <RadioButton
+                                android:id="@+id/radioFit3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Moderate ( 4-5 / week)" />
+
+                            <RadioButton
+                                android:id="@+id/radioFit4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Active (daily exercise)" />
+
+                            <RadioButton
+                                android:id="@+id/radioFit5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Very Active (intense daily exercise)" />
+                        </RadioGroup>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:id="@+id/divider8"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toTopOf="@+id/textView18"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -140,19 +466,107 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:orientation="horizontal">
+                        android:id="@+id/linearLayout9"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView18">
 
-                        <ImageButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/gender_button"
-                            android:backgroundTint="@color/secondary_color"
-                            android:layout_margin="20dp"
-                            android:src="@drawable/minus"/>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="50dp">
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout7"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layout_constraintEnd_toStartOf="@+id/linearLayout8"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/textView17"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingVertical="5dp"
+                                    android:text="Moderate Weight"
+                                    android:textAlignment="center"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/textView16"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingVertical="5dp"
+                                    android:text="Mild Weight Loss"
+                                    android:textAlignment="center"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/textView11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingVertical="5dp"
+                                    android:text="Weight Loss"
+                                    android:textAlignment="center"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/textView6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingVertical="5dp"
+                                    android:text="Extreme Weight Loss"
+                                    android:textAlignment="center"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout8"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:orientation="vertical"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/linearLayout7"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/TVModerate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingVertical="5dp"
+                                    android:textAlignment="center"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/TVMild"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingVertical="5dp"
+                                    android:textAlignment="center"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/TVNormal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingVertical="5dp"
+                                    android:textAlignment="center"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/TVExtreme"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingVertical="5dp"
+                                    android:textAlignment="center"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
 
                         <TextView
                             android:id="@+id/weight"
