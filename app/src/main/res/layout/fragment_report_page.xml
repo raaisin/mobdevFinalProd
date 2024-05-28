@@ -292,7 +292,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="35dp"
-                        android:minHeight="100dp"
+                        android:minHeight="50dp"
                         android:orientation="vertical"
                         android:background="@drawable/bmi_result_container">
 

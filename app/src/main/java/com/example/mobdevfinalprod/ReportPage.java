@@ -28,6 +28,9 @@ public class ReportPage extends Fragment {
     private static TextView weightView;
     private static ImageButton reduceWeight;
     private static ImageButton addWeight;
+    private static ImageButton addAge;
+    private static ImageButton reduceAge;
+    private static TextView ageView;
 
 
     // TODO: Rename and change types of parameters
@@ -74,6 +77,9 @@ public class ReportPage extends Fragment {
         weightView = view.findViewById(R.id.weight);
         reduceWeight = view.findViewById(R.id.reduce_weight);
         addWeight = view.findViewById(R.id.add_weight);
+        ageView = view.findViewById(R.id.age);
+        reduceAge = view.findViewById(R.id.reduce_age);
+        addAge = view.findViewById(R.id.add_age);
 
         addGenderButtonFunction(view);
 //        addWeightButtonFunction();
@@ -84,6 +90,14 @@ public class ReportPage extends Fragment {
         addWeight.setOnClickListener(click->{
             int currentValue = Integer.parseInt(String.valueOf(weightView.getText()));
             weightView.setText(String.valueOf(currentValue+1));
+        });
+        reduceAge.setOnClickListener(click->{
+            int currentValue = Integer.parseInt(String.valueOf(ageView.getText()));
+            ageView.setText(String.valueOf(currentValue-1));
+        });
+        addAge.setOnClickListener(click->{
+            int currentValue = Integer.parseInt(String.valueOf(ageView.getText()));
+            ageView.setText(String.valueOf(currentValue+1));
         });
 
         return view;
