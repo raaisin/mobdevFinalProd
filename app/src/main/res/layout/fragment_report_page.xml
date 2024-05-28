@@ -39,6 +39,7 @@
             android:id="@+id/BMILayout"
             android:layout_width="0dp"
             android:layout_height="300dp"
+            android:layout_margin="5dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/divider3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +77,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputLayout"
+                            android:id="@+id/editHeightBMI"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -91,12 +92,12 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputLayout2"
+                            android:id="@+id/editWeightBMI"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+                            app:layout_constraintTop_toBottomOf="@+id/editHeightBMI">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
@@ -105,7 +106,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <EditText
-                            android:id="@+id/editTextText"
+                            android:id="@+id/editResultBMI"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -115,7 +116,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+                            app:layout_constraintTop_toBottomOf="@+id/editWeightBMI" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
@@ -158,6 +159,7 @@
                                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                                     android:textSize="16sp"
                                     android:textStyle="bold"
+
                                     app:layout_constraintBottom_toTopOf="@+id/textView8"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -167,6 +169,7 @@
                                     android:id="@+id/textView8"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:justificationMode="inter_word"
                                     android:padding="5dp"
                                     android:text="@string/what_is_BMI"
                                     android:textAlignment="center"
@@ -309,7 +312,7 @@
                                     android:layout_height="match_parent">
 
                                     <com.google.android.material.textfield.TextInputLayout
-                                        android:id="@+id/textInputLayout3"
+                                        android:id="@+id/editAgeCalorie"
                                         android:layout_width="125dp"
                                         android:layout_height="60dp"
                                         android:paddingRight="10dp"
@@ -332,7 +335,7 @@
                                         android:layout_height="match_parent"
                                         android:background="?android:attr/listDivider"
                                         app:layout_constraintEnd_toStartOf="@+id/radioGroup"
-                                        app:layout_constraintStart_toEndOf="@+id/textInputLayout3" />
+                                        app:layout_constraintStart_toEndOf="@+id/editAgeCalorie" />
 
                                     <RadioGroup
                                         android:id="@+id/radioGroup"
@@ -342,7 +345,7 @@
                                         android:paddingLeft="10dp"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
+                                        app:layout_constraintStart_toEndOf="@+id/editAgeCalorie"
                                         app:layout_constraintTop_toTopOf="parent">
 
                                         <TextView
@@ -354,13 +357,13 @@
                                             android:text="Gender" />
 
                                         <RadioButton
-                                            android:id="@+id/radioButton"
+                                            android:id="@+id/radioMale"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:text="Male" />
 
                                         <RadioButton
-                                            android:id="@+id/radioButton2"
+                                            android:id="@+id/radioFemale"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:text="Female" />
@@ -411,12 +414,12 @@
                                 android:layout_height="match_parent">
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/textInputLayout"
+                                    android:id="@+id/editHeightCalorie"
                                     android:layout_width="120dp"
                                     android:layout_height="wrap_content"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/textView3">
+                                    app:layout_constraintTop_toTopOf="parent">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:layout_width="match_parent"
@@ -426,12 +429,13 @@
                                 </com.google.android.material.textfield.TextInputLayout>
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/textInputLayout2"
+                                    android:id="@+id/editWeightCalorie"
                                     android:layout_width="120dp"
                                     android:layout_height="wrap_content"
+                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+                                    app:layout_constraintTop_toBottomOf="@+id/editHeightCalorie">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:layout_width="match_parent"
@@ -450,31 +454,31 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <RadioButton
-                                android:id="@+id/radioButton12"
+                                android:id="@+id/radioFit1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Sedentary" />
 
                             <RadioButton
-                                android:id="@+id/radioButton11"
+                                android:id="@+id/radioFit2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Light ( 1-3 / week)" />
 
                             <RadioButton
-                                android:id="@+id/radioButton10"
+                                android:id="@+id/radioFit3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Moderate ( 4-5 / week)" />
 
                             <RadioButton
-                                android:id="@+id/radioButton9"
+                                android:id="@+id/radioFit4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Active (daily exercise)" />
 
                             <RadioButton
-                                android:id="@+id/radioButton8"
+                                android:id="@+id/radioFit5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Very Active (intense daily exercise)" />
@@ -515,7 +519,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="50dp">
 
                             <LinearLayout
                                 android:id="@+id/linearLayout7"
@@ -574,7 +579,7 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <TextView
-                                    android:id="@+id/textView12"
+                                    android:id="@+id/TVModerate"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingVertical="5dp"
@@ -582,7 +587,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
-                                    android:id="@+id/textView13"
+                                    android:id="@+id/TVMild"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingVertical="5dp"
@@ -590,7 +595,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
-                                    android:id="@+id/textView14"
+                                    android:id="@+id/TVNormal"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingVertical="5dp"
@@ -598,7 +603,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
-                                    android:id="@+id/textView15"
+                                    android:id="@+id/TVExtreme"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingVertical="5dp"
