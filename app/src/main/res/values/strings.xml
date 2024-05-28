@@ -72,4 +72,8 @@
     <string name="personalized_exercise_list">Personalized Exercise List</string>
     <string name="welcome_container">welcome_container</string>
     <string name="homesweat">HomeSweat</string>
+    <string name="assistant">Assistant</string>
+    <string name="health_insights">Health Insights</string>
+    <string name="bmi_calculator">Body Mass Index Calculator</string>
+    <string name="gender">Gender</string>
 </resources>

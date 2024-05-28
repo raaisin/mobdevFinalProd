@@ -82,11 +82,11 @@ public class MainPage extends AppCompatActivity {
                         animate(1,transaction);
                         break;
                     case 2:
-                        transaction.show(reportPage);
+                        transaction.show(aiHelperPage);
                         animate(2,transaction);
                         break;
                     case 3:
-                        transaction.show(aiHelperPage);
+                        transaction.show(reportPage);
                         animate(3,transaction);
                         break;
                 }
