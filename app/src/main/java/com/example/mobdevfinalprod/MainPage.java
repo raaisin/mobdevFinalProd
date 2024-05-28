@@ -19,7 +19,7 @@ public class MainPage extends AppCompatActivity {
         tabs = findViewById(R.id.main_page_tabs);
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
-        getSupportFragmentManager().beginTransaction().replace(R.id.changing_layout, new InitialView(username))
+        getSupportFragmentManager().beginTransaction().replace(R.id.changing_layout, Logs.newInstance(username))
                 .addToBackStack(null).commit();
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
