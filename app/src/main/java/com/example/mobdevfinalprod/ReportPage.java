@@ -8,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mobdevfinalprod.helperclasses.AnimationClass;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +25,10 @@ public class ReportPage extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static TextView weightView;
+    private static ImageButton reduceWeight;
+    private static ImageButton addWeight;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -62,22 +70,36 @@ public class ReportPage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_report_page, container, false);
+
+        weightView = view.findViewById(R.id.weight);
+        reduceWeight = view.findViewById(R.id.reduce_weight);
+        addWeight = view.findViewById(R.id.add_weight);
+
         addGenderButtonFunction(view);
+//        addWeightButtonFunction();
+        reduceWeight.setOnClickListener(click->{
+            int currentValue = Integer.parseInt(String.valueOf(weightView.getText()));
+            weightView.setText(String.valueOf(currentValue-1));
+        });
+        addWeight.setOnClickListener(click->{
+            int currentValue = Integer.parseInt(String.valueOf(weightView.getText()));
+            weightView.setText(String.valueOf(currentValue+1));
+        });
 
         return view;
     }
-    private void addGenderButtonFunction(View view) {
+    private static void addGenderButtonFunction(View view) {
         view.findViewById(R.id.male).setOnClickListener(click-> {
-            Toast.makeText(getContext(), "Male Clicked", Toast.LENGTH_LONG).show();
-            // change to something
-//            click.setBackgroundResource(R.drawable.bottom_nav_background);
-//            view.findViewById(R.id.female).setBackgroundResource(R.drawable.gender_button);
+            click.setBackgroundResource(R.drawable.selected_gender);
+            click.startAnimation(AnimationClass.addFadeOutAnimation());
+            click.startAnimation(AnimationClass.addFadeInAnimation());
+            view.findViewById(R.id.female).setBackgroundResource(R.drawable.gender_button);
         });
         view.findViewById(R.id.female).setOnClickListener(click-> {
-            Toast.makeText(getContext(), "Female Clicked", Toast.LENGTH_LONG).show();
-            // change to something
-//            click.setBackgroundResource(R.drawable.bottom_nav_background);
-//            view.findViewById(R.id.male).setBackgroundResource(R.drawable.gender_button);
+            click.setBackgroundResource(R.drawable.selected_gender);
+            click.startAnimation(AnimationClass.addFadeOutAnimation());
+            click.startAnimation(AnimationClass.addFadeInAnimation());
+            view.findViewById(R.id.male).setBackgroundResource(R.drawable.gender_button);
         });
     }
 }

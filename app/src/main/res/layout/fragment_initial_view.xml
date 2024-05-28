@@ -32,7 +32,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
                         android:text="@string/homesweat"
-                        android:textColor="@color/white"
+                        android:textColor="#FFFFFF"
                         android:textSize="32sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -51,7 +51,8 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             android:textSize="18sp"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
                             />
                         <TextView
                             android:layout_width="wrap_content"

@@ -43,14 +43,14 @@ public class DateUtils {
             textView.setLayoutParams(new LinearLayout.LayoutParams(
                     0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
 
-            textView.setTextColor(Color.BLACK);
+            textView.setTextColor(Color.WHITE);
             textView.setHeight(170);
             textView.setTextSize(15);
             if (date == currentDay) {
                 textView.setBackgroundResource(R.drawable.square_button_main_color);
                 ColorStateList colorStateList = ColorStateList.valueOf(Color.parseColor("#D3D3D3"));
                 textView.setBackgroundTintList(colorStateList);
-                textView.setTextColor(Color.WHITE);
+                textView.setTextColor(view.getResources().getColor(R.color.main_color));
             }
             linearLayout.addView(textView);
         }

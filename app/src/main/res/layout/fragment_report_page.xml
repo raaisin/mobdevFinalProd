@@ -21,12 +21,12 @@
             android:textAlignment="textStart"
             android:textColor="@color/secondary_color"
             android:textSize="24sp"
-            android:paddingHorizontal="20dp"/>
+            android:paddingHorizontal="10dp"/>
         <ScrollView
             android:layout_gravity="top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp">
+            android:scrollbars="none">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,18 +58,39 @@
                             android:layout_height="150dp"
                             android:background="@drawable/gender_button"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             android:contentDescription="@string/male"/>
-                        <TextView
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:text="@string/male"/>
+                            android:gravity="center">
+                            <ImageView
+                                android:id="@+id/male_gender"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toTopOf="@+id/male_text"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:src="@drawable/male_symbol"/>
+
+                            <TextView
+                                android:id="@+id/male_text"
+                                app:layout_constraintTop_toBottomOf="@+id/male_gender"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:text="@string/male"/>
+                        </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
@@ -84,17 +105,37 @@
                             android:background="@drawable/gender_button"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-
-                        <TextView
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:text="@string/female"/>
+                            android:gravity="center">
+                            <ImageView
+                                android:id="@+id/female_gender"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toTopOf="@+id/female_text"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:src="@drawable/female_symbol"/>
+
+                            <TextView
+                                android:id="@+id/female_text"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:text="@string/female"/>
+                        </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -112,6 +153,7 @@
                         android:layout_gravity="center_horizontal"
                         android:text="@string/height_in_cm"
                         android:textColor="@color/black"
+                        android:textSize="16sp"
                         android:textStyle="bold"/>
 
                     <EditText
@@ -120,10 +162,10 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
                         android:hint="height here"
+                        android:inputType="numberDecimal"
                         android:textAlignment="center"
-                        android:textColorHint="#99575353"
                         android:textColor="@color/black"
-                        android:inputType="numberDecimal"/>
+                        android:textColorHint="#99575353" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -138,6 +180,7 @@
                         android:layout_gravity="center_horizontal"
                         android:text="Weight in Kilograms"
                         android:textColor="@color/black"
+                        android:textSize="16sp"
                         android:textStyle="bold"/>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -146,6 +189,7 @@
                         android:orientation="horizontal">
 
                         <ImageButton
+                            android:id="@+id/reduce_weight"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
@@ -163,11 +207,14 @@
                             android:layout_margin="10dp"
                             android:textSize="40sp"
                             android:paddingHorizontal="20dp"
+                            android:paddingVertical="10dp"
                             android:background="@drawable/gender_button"
-                            android:textColor="@color/black"/>
+                            android:fontFamily="@font/roboto_black"
+                            android:textColor="@color/secondary_color"/>
 
 
                         <ImageButton
+                            android:id="@+id/add_weight"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
@@ -178,6 +225,103 @@
                     </LinearLayout>
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/gender_button"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Age"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/reduce_age"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/gender_button"
+                            android:backgroundTint="@color/main_color"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/minus"/>
+
+                        <TextView
+                            android:id="@+id/age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:textSize="40sp"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="10dp"
+                            android:background="@drawable/gender_button"
+                            android:fontFamily="@font/roboto_black"
+                            android:textColor="@color/main_color"/>
+
+
+                        <ImageButton
+                            android:id="@+id/add_age"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/gender_button"
+                            android:backgroundTint="@color/main_color"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/baseline_add_24"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="35dp"
+                        android:minHeight="100dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/bmi_result_container">
+
+                    </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageButton
+                            android:layout_centerInParent="true"
+                            android:id="@+id/submit_BMI"
+                            android:layout_width="200dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/gender_button"
+                            android:backgroundTint="@color/secondary_color"
+                            />
+                        <TextView
+                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:text="SEE RESULTS"/>
+                    </RelativeLayout>
+
+                </RelativeLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

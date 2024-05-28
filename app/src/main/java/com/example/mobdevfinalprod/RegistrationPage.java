@@ -82,6 +82,7 @@ public class RegistrationPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_registration_page, container, false);
+        view.findViewById(R.id.register_loading).setVisibility(View.GONE);
         view.findViewById(R.id.to_login_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +109,8 @@ public class RegistrationPage extends Fragment {
                     textView.setTextColor(Color.RED);
                 }
                 else{
+                    view.findViewById(R.id.register_loading).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.register_text).setVisibility(View.GONE);
                     database = FirebaseFirestore.getInstance();
                     Map<String,String> users = new HashMap<>();
                     users.put("username",username);
@@ -120,6 +123,8 @@ public class RegistrationPage extends Fragment {
                         if (snapshot.exists()) {
                             textView.setText("Username is already existing");
                             textView.setTextColor(Color.RED);
+                            view.findViewById(R.id.register_loading).setVisibility(View.GONE);
+                            view.findViewById(R.id.register_text).setVisibility(View.VISIBLE);
                             throw new FirebaseFirestoreException("User already exist", FirebaseFirestoreException.Code.ALREADY_EXISTS);
                         }
                         else {
@@ -129,9 +134,13 @@ public class RegistrationPage extends Fragment {
                     }).addOnSuccessListener(aVoid -> {
                         textView.setText("Registration successful");
                         textView.setTextColor(Color.GREEN);
+                        view.findViewById(R.id.register_loading).setVisibility(View.GONE);
+                        view.findViewById(R.id.register_text).setVisibility(View.VISIBLE);
                     }).addOnFailureListener(e -> {
-                        textView.setText(e.getMessage().toString());
+                        textView.setText("User already exist");
                         textView.setTextColor(Color.RED);
+                        view.findViewById(R.id.register_loading).setVisibility(View.GONE);
+                        view.findViewById(R.id.register_text).setVisibility(View.VISIBLE);
                     });
                 }
             }

@@ -6,4 +6,5 @@
     <color name="secondary_color">#F6780A</color>
     <color name="secondary_color_fade">#CDEE862B</color>
     <color name="hint_color">#A34A0202</color>
+    <color name="blue">#2742F6</color>
 </resources>
