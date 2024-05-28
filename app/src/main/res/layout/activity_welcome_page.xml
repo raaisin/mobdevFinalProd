@@ -27,23 +27,37 @@
         android:layout_height="match_parent"
         android:padding="40dp">
 
-        <TextView
-            android:id="@+id/welcome_message"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/welcome_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/welcome"
-            android:textSize="35dp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/roboto_black"
-            android:textColor="@color/black"/>
+            android:gravity="center">
+            <TextView
+                android:id="@+id/welcome_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/homesweat"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/main_color"
+                android:layout_marginStart="10dp"
+                />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/user_intro"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/welcome_message"
+            android:layout_below="@+id/welcome_name"
             android:fontFamily="@font/roboto"
             android:textColor="@color/black"
             android:text="@string/welcome_message"

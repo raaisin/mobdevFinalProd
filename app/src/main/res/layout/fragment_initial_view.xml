@@ -5,109 +5,112 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".InitialView"
-    android:backgroundTint="@color/white">
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:backgroundTint="@color/white">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/topmost"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="@string/teambangan"
-                    android:textColor="@color/main_color"
-                    android:textSize="32sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="20dp"/>
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/app_name"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingHorizontal="20dp">
-                    <TextView
-                        android:id="@+id/weekly_goals"
-                        android:text="@string/weekly_goals"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/roboto"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0/7"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/weekly_goals"
-                        app:layout_constraintBottom_toBottomOf="@+id/weekly_goals"
-                        android:textSize="16sp"
-                        android:textColor="#0842F1"/>
-                    <LinearLayout
-                        android:id="@+id/date_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="50sp"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/weekly_goals"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:paddingVertical="10dp"
                 android:orientation="vertical"
-                android:gravity="center_vertical"
-                android:background="@color/secondary_color">
-                <TextView
-                    android:id="@+id/welcome_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/welcome_back"
-                    android:textColor="#03115C"
-                    android:textSize="28sp"
-                    android:fontFamily="@font/roboto_black"/>
+                android:background="@drawable/welcome_container">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/topmost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/username_init"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/username_here"
-                    android:textColor="@color/white"
-                    android:textSize="26sp" />
+                    <TextView
+                        android:id="@+id/app_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                            android:text="@string/homesweat"
+                        android:textColor="@color/white"
+                        android:textSize="32sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="20dp"/>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/app_name"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:paddingHorizontal="20dp">
+                        <TextView
+                            android:id="@+id/weekly_goals"
+                            android:text="@string/weekly_goals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textSize="20sp"
+                            android:textColor="@color/black"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0/7"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/weekly_goals"
+                            app:layout_constraintBottom_toBottomOf="@+id/weekly_goals"
+                            android:textSize="16sp"
+                            android:textColor="#E3E9F6"/>
+                        <LinearLayout
+                            android:id="@+id/date_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="50sp"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/weekly_goals"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/welcome_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/welcome_back"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="26sp" />
+
+                    <TextView
+                        android:id="@+id/username_init"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/username_here"
+                        android:textColor="@color/white"
+                        android:textSize="26sp" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
+                android:id="@+id/kick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="20dp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/kick_off"
                 android:textSize="16sp"
@@ -123,16 +126,15 @@
                     android:id="@+id/first_linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
                     android:orientation="horizontal"
-                    android:background="#FAE05F"
                     android:layout_marginBottom="10dp">
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
-                        android:layout_marginStart="10dp">
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/yellow_background">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
@@ -141,16 +143,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
                             android:text="@string/arms_stretch"
-                            android:textColor="@color/black"/>
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
-                        android:layout_marginEnd="10dp">
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/yellow_background">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
@@ -159,8 +162,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textColor="#333333"
                             android:text="@string/arm_circle"/>
                     </LinearLayout>
                     <LinearLayout
@@ -168,7 +171,8 @@
                         android:layout_height="230dp"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
-                        android:layout_marginEnd="10dp">
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/yellow_background">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
@@ -177,8 +181,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textColor="#333333"
                             android:text="@string/tricep_stretch"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -192,16 +196,15 @@
                     android:id="@+id/second_linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
                     android:orientation="horizontal"
-                    android:background="#33FFF8"
                     android:layout_marginBottom="10dp">
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
-                        android:layout_marginStart="10dp">
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/blue_background">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
@@ -210,8 +213,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textColor="#000000"
                             android:text="@string/jumping_jacks"/>
                     </LinearLayout>
                     <LinearLayout
@@ -219,7 +222,8 @@
                         android:layout_height="230dp"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
-                        android:layout_marginEnd="10dp">
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/blue_background">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
@@ -228,8 +232,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textColor="#333333"
                             android:text="@string/crunches"/>
                     </LinearLayout>
                     <LinearLayout
@@ -237,7 +241,8 @@
                         android:layout_height="230dp"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
-                        android:layout_marginEnd="10dp">
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/blue_background">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
@@ -246,7 +251,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
+                            android:textSize="16dp"
                             android:text="@string/mountain_climber"
                             android:textColor="@color/black"/>
                     </LinearLayout>
@@ -261,15 +266,14 @@
                     android:id="@+id/third_linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:orientation="horizontal"
-                    android:background="#57C6BF">
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
-                        android:layout_marginStart="10dp">
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/greenish_background">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
@@ -278,16 +282,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
-                            android:text="@string/squats"
-                            android:textColor="@color/black"/>
+                            android:textSize="16sp"
+                            android:textColor="#FFFFFF"
+                            android:text="@string/squats"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
-                        android:layout_marginEnd="10dp">
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/greenish_background">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
@@ -296,16 +301,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
                             android:text="@string/lunges"
-                            android:textColor="@color/black"/>
+                            android:textSize="16sp"
+                            android:textColor="#FFFFFF"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
-                        android:layout_marginEnd="10dp">
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/greenish_background">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
@@ -314,9 +320,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
-                            android:text="@string/step_up"
-                            android:textColor="@color/black"/>
+                            android:textSize="16sp"
+                            android:textColor="#FFFFFF"
+                            android:text="@string/step_up"/>
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>

@@ -19,17 +19,19 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_page_tabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/main_color"
+        android:layout_height="60dp"
         app:tabTextColor="@color/white"
         app:tabIndicatorColor="#FFFFFF"
-        app:tabIndicatorGravity="top">
+        app:tabIndicatorGravity="top"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorFullWidth="true"
+        android:background="@drawable/bottom_nav_background">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/training"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/training" />
+            android:text="Home"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/discover"

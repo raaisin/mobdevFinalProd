@@ -107,11 +107,11 @@ public class MainPage extends AppCompatActivity {
     private void animate(int index,FragmentTransaction transaction){
 
         if(selectedTab > index) {
-            transaction.setCustomAnimations(R.anim.center_to_right,R.anim.from_right_to_left);
+            transaction.setCustomAnimations(R.anim.from_right_to_left,R.anim.center_to_right);
             selectedTab = index;
         }
         else if(selectedTab < index) {
-            transaction.setCustomAnimations(R.anim.center_to_left,R.anim.from_left_to_right);
+            transaction.setCustomAnimations(R.anim.from_left_to_right, R.anim.center_to_left);
             selectedTab = index;
         }
     }

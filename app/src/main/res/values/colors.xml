@@ -2,8 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="main_color">#EE707F</color>
-    <color name="secondary_color">#EE862B</color>
+    <color name="main_color">#F84358</color>
+    <color name="secondary_color">#F6780A</color>
     <color name="secondary_color_fade">#CDEE862B</color>
     <color name="hint_color">#A34A0202</color>
 </resources>
