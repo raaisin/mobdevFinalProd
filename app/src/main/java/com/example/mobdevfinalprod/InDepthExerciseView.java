@@ -5,6 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.text.LineBreaker;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +19,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.mobdevfinalprod.helperclasses.AnimationClass;
 import com.example.mobdevfinalprod.helperclasses.DatabaseOperations;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -67,6 +71,7 @@ public class InDepthExerciseView extends AppCompatActivity {
                     TextView descriptionView = findViewById(R.id.exercise_description);
                     descriptionView.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
                     descriptionView.setText(snapshot.get("description").toString());
+                    findViewById(R.id.text_loading_indicator).setVisibility(View.GONE);
                 });
             } else {
                 Map<String, String> exercise = new HashMap<>();
@@ -95,6 +100,7 @@ public class InDepthExerciseView extends AppCompatActivity {
                     descriptionView.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
                     descriptionView.setText(answer);
                     searchExercise(exerciseName, answer);
+                    descriptionView.startAnimation(AnimationClass.addFadeInAnimation());
                 });
             }
         });

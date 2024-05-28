@@ -15,7 +15,7 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="ai_intro_message">I\'m your new exercise companion, here to guide and support you on your fitness journey. Let\'s create a personalized plan together to help you reach your goals. Whether you\'re starting out or aiming for the next level, I\'m here to make your fitness experience enjoyable and effective. Let\'s achieve your fitness goals together</string>
-    <string name="welcome">WELCOME</string>
+    <string name="welcome">Welcome to</string>
     <string name="welcome_message">Join our exercise community! Create an account today and start your fitness journey with us!</string>
     <string name="already">Already have an account?</string>
     <string name="getting_started">Getting Started</string>
@@ -23,7 +23,7 @@
     <string name="todo">TODO</string>
     <string name="teambangan">TEAMBANGAN</string>
     <string name="weekly_goals">Weekly Goals</string>
-    <string name="welcome_back">WELCOME BACK,</string>
+    <string name="welcome_back">Welcome back,</string>
     <string name="username_here">username here</string>
     <string name="kick_off">Kick off your journey with these exercises.</string>
 
@@ -63,4 +63,21 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="confirm_create_new">Are You Sure You Want To Create New Routine?</string>
+    <string name="AI_inquiry">Type your Inquiries here</string>
+    <string name="submit_ai_inquiry">Submit AI Inquiry</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">confirm</string>
+    <string name="exercise_name">exercise name</string>
+    <string name="image_of_exercise_will_display_here">Image of Exercise will display here</string>
+    <string name="personalized_exercise_list">Personalized Exercise List</string>
+    <string name="welcome_container">welcome_container</string>
+    <string name="homesweat">HomeSweat</string>
+    <string name="assistant">Assistant</string>
+    <string name="health_insights">Health Insights</string>
+    <string name="bmi_calculator">Body Mass Index Calculator</string>
+    <string name="gender">Gender</string>
+    <string name="height_in_cm">Height in Centimeters</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="scrollforheight">scrollForHeight</string>
 </resources>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InDepthExerciseView"
-    android:layout_margin="20dp"
+    android:padding="10dp"
     android:background="@color/white">
 
     <ScrollView
@@ -17,7 +17,7 @@
         android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -25,12 +25,13 @@
                 android:id="@+id/exerciseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/secondary_color"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="40dp"
-                android:text="exercise name"/>
+                android:textSize="24sp"
+                android:text="@string/exercise_name"/>
 
             <ImageView
+                android:contentDescription="@string/image_of_exercise_will_display_here"
                 android:id="@+id/exercise_image"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
@@ -40,12 +41,17 @@
                 android:id="@+id/exercise_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fetching Data"
                 android:textSize="14sp"
                 android:justificationMode="inter_word"
                 android:layout_marginBottom="60dp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/poppins"/>
+                android:fontFamily="@font/poppins"
+                android:layout_marginHorizontal="5dp"/>
+            <ProgressBar
+                android:id="@+id/text_loading_indicator"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:indeterminateTint="@color/main_color"/>
         </LinearLayout>
     </ScrollView>
 

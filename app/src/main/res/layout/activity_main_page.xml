@@ -23,13 +23,15 @@
         android:background="@color/main_color"
         app:tabIndicatorColor="#FFFFFF"
         app:tabIndicatorGravity="top"
-        app:tabTextColor="@color/white">
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorFullWidth="true"
+        android:background="@drawable/bottom_nav_background">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/training"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/training" />
+            android:text="Home"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/discover"
@@ -38,16 +40,17 @@
             android:text="@string/discover" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/report"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/report" />
-
-        <com.google.android.material.tabs.TabItem
             android:id="@+id/helper_AI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ai_helper" />
+            android:text="@string/assistant" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/health_insights" />
+
 
     </com.google.android.material.tabs.TabLayout>
 

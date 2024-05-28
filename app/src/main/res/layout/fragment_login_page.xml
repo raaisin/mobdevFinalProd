@@ -39,7 +39,7 @@
                 android:textStyle="bold"
                 android:layout_gravity="bottom"
                 android:textColor="@color/black"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/roboto_bold"
                 />
             <ImageView
                 android:layout_width="300dp"
@@ -56,8 +56,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight=".5"
-            android:gravity="top"
-            android:padding="20dp">
+            android:gravity="top">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,20 +69,36 @@
                     android:id="@+id/username_login"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/input_background"
+                    android:fontFamily="@font/roboto"
                     android:hint="@string/username"
                     android:inputType="text"
-                    android:textColor="@color/black"/>
+                    android:paddingStart="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="16sp" />
+
                 <EditText
                     android:id="@+id/password_login"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:background="@drawable/input_background"
+                    android:textSize="16sp"
+                    android:textColorHint="@color/hint_color"
+                    android:paddingStart="10dp" />
+
                 <TextView
                     android:id="@+id/login_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:fontFamily="@font/roboto"/>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -94,13 +109,21 @@
                         android:contentDescription="@string/login"
                         android:background="@drawable/square_button_main_color"/>
                     <TextView
+                        android:id="@+id/login_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/login"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:layout_centerInParent="true"
-                        android:fontFamily="@font/poppins"/>
+                        android:fontFamily="@font/roboto"/>
+                    <ProgressBar
+                        android:id="@+id/login_loading"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_centerInParent="true"
+                        android:indeterminateTint="@color/white"
+                        />
                 </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -111,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/poppins"
+                        android:fontFamily="@font/roboto"
                         android:text="@string/don_t_have_an_account"/>
 
                     <TextView
@@ -123,7 +146,7 @@
                         android:textColor="@color/secondary_color"
                         android:textStyle="bold"
                         android:text="Register"
-                        android:fontFamily="@font/poppins"/>
+                        android:fontFamily="@font/roboto"/>
                 </LinearLayout>
             </LinearLayout>
 

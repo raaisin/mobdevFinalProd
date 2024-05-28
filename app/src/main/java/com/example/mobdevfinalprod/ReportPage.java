@@ -92,7 +92,6 @@ public class ReportPage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_report_page, container, false);
 
 
-
             EditText heightBMI = view.findViewById(R.id.editHeightBMI);
             EditText weightBMI = view.findViewById(R.id.editWeightBMI);
             EditText resultBMI = view.findViewById(R.id.editResultBMI);
@@ -156,7 +155,22 @@ public class ReportPage extends Fragment {
                 multiplier = 0.73;
             }
 
+        addGenderButtonFunction(view);
 
         return view;
+    }
+    private void addGenderButtonFunction(View view) {
+        view.findViewById(R.id.male).setOnClickListener(click-> {
+            Toast.makeText(getContext(), "Male Clicked", Toast.LENGTH_LONG).show();
+            // change to something
+//            click.setBackgroundResource(R.drawable.bottom_nav_background);
+//            view.findViewById(R.id.female).setBackgroundResource(R.drawable.gender_button);
+        });
+        view.findViewById(R.id.female).setOnClickListener(click-> {
+            Toast.makeText(getContext(), "Female Clicked", Toast.LENGTH_LONG).show();
+            // change to something
+//            click.setBackgroundResource(R.drawable.bottom_nav_background);
+//            view.findViewById(R.id.male).setBackgroundResource(R.drawable.gender_button);
+        });
     }
 }
