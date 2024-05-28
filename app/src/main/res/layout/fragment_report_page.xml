@@ -49,6 +49,7 @@
                         android:layout_gravity="start"
                         android:layout_weight=".5">
                         <ImageButton
+                            android:id="@+id/male"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:background="@drawable/gender_button"
@@ -63,6 +64,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight=".5">
                         <ImageButton
+                            android:id="@+id/female"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:background="@drawable/gender_button"
