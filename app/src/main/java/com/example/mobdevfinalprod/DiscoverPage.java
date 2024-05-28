@@ -95,7 +95,7 @@ public class DiscoverPage extends Fragment {
 
         searchCustomExerciseDatabase(username, exists -> {
             if(exists){
-                displayAllCustomizedExercise(personalExercises, username);
+                displayAllCustomizedExercise(personalExercises, username, getContext());
                 loadingIndicator.setVisibility(View.GONE);
             }
             else {
@@ -123,7 +123,7 @@ public class DiscoverPage extends Fragment {
                 DatabaseOperations.insertDataToDatabase(username, data);
                 confirm_container.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.GONE);
-                displayAllCustomizedExercise(personalExercises,username);
+                displayAllCustomizedExercise(personalExercises,username, getContext());
                 noExerciseFound(personalExercises,"Ready for your workout? Tap here to see your personalized exercises!");
             }
         });
@@ -145,7 +145,7 @@ public class DiscoverPage extends Fragment {
         getActivity().finish();
     }
 
-    private void displayAllCustomizedExercise(LinearLayout personalExercises, String username) {
+    public static void displayAllCustomizedExercise(LinearLayout personalExercises, String username, Context context) {
         personalExercises.removeAllViews();
         personalExercises.setVisibility(View.VISIBLE);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
@@ -158,9 +158,9 @@ public class DiscoverPage extends Fragment {
                     assert data != null;
                     for(final String exerciseName: data.keySet()) {
                         String exerciseNamesForReal = String.valueOf(data.get(exerciseName));
-                        LinearLayout exerciseLayout = new LinearLayout(getContext());
-                        ProgressBar loading = new ProgressBar(getContext());
-                        loading.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.secondary_color,null), android.graphics.PorterDuff.Mode.MULTIPLY);
+                        LinearLayout exerciseLayout = new LinearLayout(context);
+                        ProgressBar loading = new ProgressBar(context);
+                        loading.getIndeterminateDrawable().setColorFilter(Color.parseColor("#EE862B"), android.graphics.PorterDuff.Mode.SRC_IN);
                         exerciseLayout.addView(loading);
                         exerciseLayout.setOrientation(LinearLayout.VERTICAL);
                         String exerciseDatabaseName = exerciseNamesForReal.replace(" ","").toLowerCase();
@@ -169,14 +169,14 @@ public class DiscoverPage extends Fragment {
                                 .child("exercise_images/"+exerciseDatabaseName+".png");
                         final long ONE_MEGABYTE  = 1024 * 1024;
 
-                        TextView exerciseNameTextView = new TextView(getContext());
-                        setTextViewLayout(exerciseNameTextView, exerciseNamesForReal);
+                        TextView exerciseNameTextView = new TextView(context);
+                        setTextViewLayout(exerciseNameTextView, exerciseNamesForReal, context);
                         exerciseLayout.addView(exerciseNameTextView);
                         storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                             @Override
                             public void onSuccess(byte[] bytes) {
                                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                ImageView imageView = new ImageView(getContext());
+                                ImageView imageView = new ImageView(context);
                                 setImageViewLayout(imageView, bitmap, exerciseLayout);
                                 exerciseLayout.removeView(loading);
                                 exerciseLayout.addView(imageView);
@@ -185,9 +185,9 @@ public class DiscoverPage extends Fragment {
                                 imageView.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Intent intent = new Intent(getContext(), InDepthExerciseView.class);
+                                        Intent intent = new Intent(context, InDepthExerciseView.class);
                                         intent.putExtra("exerciseName", exerciseNamesForReal);
-                                        startActivity(intent);
+                                        context.startActivity(intent);
                                     }
                                 });
                             }
@@ -228,7 +228,7 @@ public class DiscoverPage extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new MyAdapter(username,getContext(),exercises));
     }
-    private void setImageViewLayout(ImageView imageView, Bitmap bitmap, LinearLayout layout) {
+    private static void setImageViewLayout(ImageView imageView, Bitmap bitmap, LinearLayout layout) {
         imageView.setImageBitmap(bitmap);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -238,12 +238,12 @@ public class DiscoverPage extends Fragment {
         layout.setLayoutParams(params);
         layout.setPadding(30,30,30,30);
     }
-    private void setTextViewLayout(TextView exerciseNameTextView, String exerciseNamesForReal) {
+    private static void setTextViewLayout(TextView exerciseNameTextView, String exerciseNamesForReal, Context context) {
         exerciseNameTextView.setText(exerciseNamesForReal);
-        exerciseNameTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondary_color));
+        exerciseNameTextView.setTextColor(ContextCompat.getColor(context, R.color.secondary_color));
         exerciseNameTextView.setTextSize(20);
         exerciseNameTextView.setGravity(Gravity.CENTER_HORIZONTAL);
-        Typeface font = ResourcesCompat.getFont(requireContext(), R.font.poppins_medium);
+        Typeface font = ResourcesCompat.getFont(context, R.font.poppins_medium);
         exerciseNameTextView.setTypeface(font);
     }
 

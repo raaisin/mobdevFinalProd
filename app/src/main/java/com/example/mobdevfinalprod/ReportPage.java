@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +61,23 @@ public class ReportPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_report_page, container, false);
+        addGenderButtonFunction(view);
+
+        return view;
+    }
+    private void addGenderButtonFunction(View view) {
+        view.findViewById(R.id.male).setOnClickListener(click-> {
+            Toast.makeText(getContext(), "Male Clicked", Toast.LENGTH_LONG).show();
+            // change to something
+//            click.setBackgroundResource(R.drawable.bottom_nav_background);
+//            view.findViewById(R.id.female).setBackgroundResource(R.drawable.gender_button);
+        });
+        view.findViewById(R.id.female).setOnClickListener(click-> {
+            Toast.makeText(getContext(), "Female Clicked", Toast.LENGTH_LONG).show();
+            // change to something
+//            click.setBackgroundResource(R.drawable.bottom_nav_background);
+//            view.findViewById(R.id.male).setBackgroundResource(R.drawable.gender_button);
+        });
     }
 }

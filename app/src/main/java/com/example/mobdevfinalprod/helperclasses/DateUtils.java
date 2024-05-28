@@ -43,7 +43,7 @@ public class DateUtils {
             textView.setLayoutParams(new LinearLayout.LayoutParams(
                     0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
 
-            textView.setTextColor(Color.GRAY);
+            textView.setTextColor(Color.BLACK);
             textView.setHeight(170);
             textView.setTextSize(15);
             if (date == currentDay) {
