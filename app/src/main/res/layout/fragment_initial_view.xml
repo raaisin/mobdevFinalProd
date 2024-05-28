@@ -30,8 +30,8 @@
                         android:id="@+id/app_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_bold"
-                            android:text="@string/homesweat"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/homesweat"
                         android:textColor="@color/white"
                         android:textSize="32sp"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -50,7 +50,7 @@
                             android:layout_height="wrap_content"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textColor="@color/black"
                             />
                         <TextView
@@ -125,7 +125,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/yellow_background">
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
@@ -143,6 +144,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/arms_stretch"
                             android:textSize="16sp"
+                            android:fontFamily="@font/poppins_medium"
                             android:textColor="#333333"/>
                     </LinearLayout>
                     <LinearLayout
@@ -162,6 +164,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:textColor="#333333"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/arm_circle"/>
                     </LinearLayout>
                     <LinearLayout
@@ -181,6 +184,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:textColor="#333333"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/tricep_stretch"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -195,7 +199,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/blue_background">
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="230dp"
@@ -213,6 +218,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:textColor="#000000"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/jumping_jacks"/>
                     </LinearLayout>
                     <LinearLayout
@@ -232,6 +238,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="#333333"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/crunches"/>
                     </LinearLayout>
                     <LinearLayout
@@ -251,6 +258,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:text="@string/mountain_climber"
+                            android:fontFamily="@font/poppins_medium"
                             android:textColor="@color/black"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -258,7 +266,8 @@
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scrollbars="none">
+                android:scrollbars="none"
+                android:background="@drawable/greenish_background">
 
                 <LinearLayout
                     android:id="@+id/third_linearLayout"
@@ -282,6 +291,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:textColor="#FFFFFF"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/squats"/>
                     </LinearLayout>
                     <LinearLayout
@@ -301,6 +311,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/lunges"
                             android:textSize="16sp"
+                            android:fontFamily="@font/poppins_medium"
                             android:textColor="#FFFFFF"/>
                     </LinearLayout>
                     <LinearLayout
@@ -320,6 +331,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:textColor="#FFFFFF"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/step_up"/>
                     </LinearLayout>
                 </LinearLayout>
