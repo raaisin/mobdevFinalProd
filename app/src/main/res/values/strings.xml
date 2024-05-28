@@ -76,4 +76,8 @@
     <string name="health_insights">Health Insights</string>
     <string name="bmi_calculator">Body Mass Index Calculator</string>
     <string name="gender">Gender</string>
+    <string name="height_in_cm">Height in Centimeters</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="scrollforheight">scrollForHeight</string>
 </resources>
