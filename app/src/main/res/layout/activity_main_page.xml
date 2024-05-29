@@ -25,37 +25,38 @@
         app:tabIndicatorGravity="top"
         app:tabIndicatorAnimationMode="elastic"
         app:tabIndicatorFullWidth="true"
-        android:background="@drawable/bottom_nav_background">
+        android:background="@drawable/bottom_nav_background"
+        app:tabIconTint="@color/white">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/training"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Home"/>
+            android:icon="@drawable/home_logo"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/discover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/discover" />
+            android:icon="@drawable/discover_logo"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/helper_AI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/assistant" />
+            android:icon="@drawable/assistant_icon"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/report"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/health_insights" />
+            android:icon="@drawable/health_icon"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/history" />
+            android:icon="@drawable/log_icon"/>
 
     </com.google.android.material.tabs.TabLayout>
 
