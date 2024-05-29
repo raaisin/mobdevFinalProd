@@ -48,7 +48,7 @@ public class DateUtils {
             textView.setTextSize(15);
             if (date == currentDay) {
                 textView.setBackgroundResource(R.drawable.square_button_main_color);
-                ColorStateList colorStateList = ColorStateList.valueOf(Color.parseColor("#F3F3F3"));
+                ColorStateList colorStateList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"));
                 textView.setBackgroundTintList(colorStateList);
                 textView.setTextColor(view.getResources().getColor(R.color.main_color));
             }

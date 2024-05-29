@@ -86,4 +86,6 @@
     <string name="exercise_history">Exercise History</string>
     <string name="exercise_history_for_the_month_of">Exercise History for the Month of</string>
     <string name="no_logs_found">No Logs Found</string>
+    <string name="create_an_account_and_join_the_community">Create an account and join the community</string>
+    <string name="welcome_back_please_sign_in_to_continue">Welcome back! Please log in to continue</string>
 </resources>

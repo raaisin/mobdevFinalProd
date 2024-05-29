@@ -20,23 +20,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/welcome_container">
+                android:background="@drawable/welcome_container"
+                android:paddingTop="10dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/topmost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <TextView
                         android:id="@+id/app_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_bold"
+                        android:fontFamily="@font/roboto_bold"
                         android:text="@string/homesweat"
                         android:textColor="#FFFFFF"
                         android:textSize="32sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="20dp"/>
+                        android:layout_marginStart="10dp"/>
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/logo_icon_transparent"
+                        app:layout_constraintLeft_toRightOf="@+id/app_name"
+                        app:layout_constraintTop_toTopOf="@+id/app_name"
+                        app:layout_constraintBottom_toBottomOf="@+id/app_name"/>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
