@@ -16,6 +16,7 @@ public class MainPage extends AppCompatActivity {
     private Fragment discoverPage;
     private Fragment reportPage;
     private Fragment aiHelperPage;
+    private Fragment historyPage;
     private int selectedTab = 0;
 
     @Override
@@ -33,6 +34,7 @@ public class MainPage extends AppCompatActivity {
         discoverPage = fragmentManager.findFragmentByTag("DiscoverPage");
         reportPage = fragmentManager.findFragmentByTag("ReportPage");
         aiHelperPage = fragmentManager.findFragmentByTag("AIHelperPage");
+        historyPage = fragmentManager.findFragmentByTag("Exerciehistory");
 
         if (initialView == null) {
             initialView = InitialView.newInstance(username);
@@ -53,11 +55,16 @@ public class MainPage extends AppCompatActivity {
             aiHelperPage = new AIHelperPage();
             transaction[0].add(R.id.changing_layout, aiHelperPage, "AIHelperPage");
         }
+        if (historyPage == null) {
+            historyPage = ExerciseHistory.newInstance(username);
+            transaction[0].add(R.id.changing_layout, historyPage, "Exerciehistory");
+        }
 
         // Hide all fragments except the initial one
         transaction[0].hide(discoverPage);
         transaction[0].hide(reportPage);
         transaction[0].hide(aiHelperPage);
+        transaction[0].hide(historyPage);
         transaction[0].commit();
 
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -70,6 +77,7 @@ public class MainPage extends AppCompatActivity {
                 transaction.hide(discoverPage);
                 transaction.hide(reportPage);
                 transaction.hide(aiHelperPage);
+                transaction.hide(historyPage);
 
                 // Show the selected fragment
                 switch (tab.getPosition()) {
@@ -88,6 +96,10 @@ public class MainPage extends AppCompatActivity {
                     case 3:
                         transaction.show(reportPage);
                         animate(3,transaction);
+                        break;
+                    case 4:
+                        transaction.show(historyPage);
+                        animate(4,transaction);
                         break;
                 }
                 transaction.commit();

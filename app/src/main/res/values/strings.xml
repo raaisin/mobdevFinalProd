@@ -82,4 +82,8 @@
     <string name="scrollforheight">scrollForHeight</string>
     <string name="bmi_results">BMI Results</string>
     <string name="this_is_where_all_the_results_will_be_displayed">This is where all the results will be displayed</string>
+    <string name="history">History</string>
+    <string name="exercise_history">Exercise History</string>
+    <string name="exercise_history_for_the_month_of">Exercise History for the Month of</string>
+    <string name="no_logs_found">No Logs Found</string>
 </resources>

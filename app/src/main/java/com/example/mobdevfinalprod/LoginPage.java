@@ -113,9 +113,14 @@ public class LoginPage extends Fragment {
                             if (storedPassword.equals(password)) {
                                 login_status.setText("Login Successful");
                                 login_status.setTextColor(Color.GREEN);
+
                                 //redirect sa main page and pass the username sa intent
                                 Intent intent = new Intent(getContext(),MainPage.class);
                                 intent.putExtra("username",username);
+                                view.findViewById(R.id.login_loading).setVisibility(View.GONE);
+                                view.findViewById(R.id.login_text).setVisibility(View.VISIBLE);
+                                ((EditText) view.findViewById(R.id.username_login)).setText("");
+                                ((EditText) view.findViewById(R.id.password_login)).setText("");
                                 view.setAnimation(AnimationClass.addFadeOutAnimation());
                                 startActivity(intent);
                             } else {

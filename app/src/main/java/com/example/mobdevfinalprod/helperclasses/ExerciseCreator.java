@@ -39,7 +39,7 @@ public class ExerciseCreator {
             }).addOnSuccessListener(aVoid -> {
 //                Toast.makeText(context, "Exercise added to database", Toast.LENGTH_SHORT).show();
             }).addOnFailureListener(e -> {
-                Toast.makeText(context, "Exercise not added to database", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Exercise not added to database", Toast.LENGTH_SHORT).show();
             });
         }
     }
