@@ -80,4 +80,6 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="scrollforheight">scrollForHeight</string>
+    <string name="bmi_results">BMI Results</string>
+    <string name="this_is_where_all_the_results_will_be_displayed">This is where all the results will be displayed</string>
 </resources>

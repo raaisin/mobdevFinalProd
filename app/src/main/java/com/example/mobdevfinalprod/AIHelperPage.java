@@ -4,6 +4,7 @@ import static android.view.animation.Animation.ABSOLUTE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.text.LineBreaker;
@@ -28,6 +29,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -112,6 +114,7 @@ public class AIHelperPage extends Fragment {
                     Toast.makeText(v.getContext(), "Please enter a question", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    ReportPage.scrollDown(view.findViewById(R.id.scrollview_ai_helper));
                     addUserQuestion(question,conversation,view);
                     addAIResponse(question,conversation,view);
                 }
@@ -121,7 +124,6 @@ public class AIHelperPage extends Fragment {
     }
     private void addUserQuestion(String question, LinearLayout conversation,View v) {
         TextView useQuestion = new TextView(v.getContext());
-        useQuestion.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         useQuestion.setPadding(20, 20, 20, 20);
         useQuestion.setTextColor(Color.BLACK);
         useQuestion.setTextSize(12);
@@ -144,12 +146,9 @@ public class AIHelperPage extends Fragment {
     }
     private void addAIResponse(String question, LinearLayout conversation, View v) {
         Typeface customTypeface = ResourcesCompat.getFont(v.getContext(), R.font.roboto);
-        TextView initial = new TextView(v.getContext());
-        initial.setText("Fetching Response");
-        initial.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
-        initial.setPadding(20, 20, 20, 20);
-        initial.setTextColor(Color.BLACK);
-        initial.setTextSize(12);
+        ProgressBar initial = new ProgressBar(getContext());
+        ColorStateList colorStateList = ColorStateList.valueOf(Color.RED); // Example color
+        initial.setIndeterminateTintList(colorStateList);
         ImageView aiCharacter = new ImageView(v.getContext());
         aiCharacter.setBackgroundResource(R.drawable.aihelper);
         float scale = v.getContext().getResources().getDisplayMetrics().density;
@@ -164,7 +163,6 @@ public class AIHelperPage extends Fragment {
 
                 TextView aiResponse = new TextView(v.getContext());
                 aiResponse.setText(response.replace("*",""));
-                aiResponse.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
                 aiResponse.setPadding(20, 20, 20, 20);
                 aiResponse.setTextColor(Color.BLACK);
                 aiResponse.setTextSize(12);
@@ -181,6 +179,7 @@ public class AIHelperPage extends Fragment {
                     aiResponse.startAnimation(slideAnimation);
                     aiResponse.startAnimation(fadeAnimation);
                     conversation.addView(aiResponse);
+                    ReportPage.scrollDown(v.findViewById(R.id.scrollview_ai_helper));
                 });
             }
         });

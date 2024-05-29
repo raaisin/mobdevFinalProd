@@ -23,6 +23,7 @@
             android:textSize="24sp"
             android:paddingHorizontal="10dp"/>
         <ScrollView
+            android:id="@+id/scrollView"
             android:layout_gravity="top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,10 +39,9 @@
                     android:text="@string/gender"
                     android:textColor="@color/black"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/roboto_black"
-                    android:textSize="18dp"/>
+                    android:textSize="20dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -294,16 +294,103 @@
                         android:layout_marginTop="35dp"
                         android:minHeight="50dp"
                         android:orientation="vertical"
-                        android:background="@drawable/bmi_result_container">
+                        android:background="@drawable/bmi_result_container"
+                        android:paddingTop="40dp"
+                        android:paddingBottom="20dp">
 
+                        <LinearLayout
+                            android:id="@+id/result_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bmi_results"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:layout_marginBottom="10dp"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="BMI: "
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    android:fontFamily="@font/roboto"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:id="@+id/bmi_value"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="bmi number"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    android:fontFamily="@font/roboto_black"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Category: "
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    android:fontFamily="@font/roboto"/>
+                                <TextView
+                                    android:id="@+id/bmi_category"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="bmi category"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    android:fontFamily="@font/roboto_black"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/loading_bmi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Getting Overall Insight"
+                                    android:textColor="@color/white"/>
+                                <ProgressBar
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:indeterminateTint="@color/secondary_color"
+                                    android:layout_gravity="center_horizontal"/>
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/overall_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/this_is_where_all_the_results_will_be_displayed"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="10dp"/>
+                        </LinearLayout>
                     </LinearLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <ImageButton
-                            android:layout_centerInParent="true"
                             android:id="@+id/submit_BMI"
+                            android:layout_centerInParent="true"
                             android:layout_width="200dp"
                             android:layout_height="70dp"
                             android:background="@drawable/gender_button"

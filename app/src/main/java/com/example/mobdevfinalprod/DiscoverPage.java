@@ -120,7 +120,7 @@ public class DiscoverPage extends Fragment {
             }
             else {
                 DatabaseOperations.deleteUserDocument(username);
-                DatabaseOperations.insertDataToDatabase(username, data);
+                DatabaseOperations.insertDataToDatabase(username,"customized_exercise", data);
                 confirm_container.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.GONE);
                 displayAllCustomizedExercise(personalExercises,username, getContext());

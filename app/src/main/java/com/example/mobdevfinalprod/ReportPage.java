@@ -5,10 +5,13 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +34,9 @@ public class ReportPage extends Fragment {
     private static ImageButton addAge;
     private static ImageButton reduceAge;
     private static TextView ageView;
+    private static ImageButton see_results;
+    private static EditText heightView;
+    public static String gender;
 
 
     // TODO: Rename and change types of parameters
@@ -73,16 +79,24 @@ public class ReportPage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_report_page, container, false);
-
+        view.findViewById(R.id.result_container).setVisibility(View.GONE);
+        view.findViewById(R.id.loading_bmi).setVisibility(View.GONE);
+        view.findViewById(R.id.overall_result).setVisibility(View.GONE);
+        gender = null;
+        addButtonFunctions(view);
+        addGenderButtonFunction(view);
+        return view;
+    }
+    private void addButtonFunctions(View view) {
+        heightView = view.findViewById(R.id.height);
         weightView = view.findViewById(R.id.weight);
         reduceWeight = view.findViewById(R.id.reduce_weight);
         addWeight = view.findViewById(R.id.add_weight);
         ageView = view.findViewById(R.id.age);
         reduceAge = view.findViewById(R.id.reduce_age);
         addAge = view.findViewById(R.id.add_age);
+        see_results = view.findViewById(R.id.submit_BMI);
 
-        addGenderButtonFunction(view);
-//        addWeightButtonFunction();
         reduceWeight.setOnClickListener(click->{
             int currentValue = Integer.parseInt(String.valueOf(weightView.getText()));
             weightView.setText(String.valueOf(currentValue-1));
@@ -99,8 +113,58 @@ public class ReportPage extends Fragment {
             int currentValue = Integer.parseInt(String.valueOf(ageView.getText()));
             ageView.setText(String.valueOf(currentValue+1));
         });
+        see_results.setOnClickListener(click->{
+            if(gender == null) {
+                Toast.makeText(getContext(), "Please select a gender", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(((TextView)view.findViewById(R.id.height)).getText().toString().isEmpty()) {
+                Toast.makeText(getContext(), "Please enter a height", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            view.findViewById(R.id.overall_result).setVisibility(View.GONE);
+            view.findViewById(R.id.result_container).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.loading_bmi).setVisibility(View.VISIBLE);
+            double weight = Double.parseDouble(String.valueOf(weightView.getText()));
+            double height = (Double.parseDouble(String.valueOf(heightView.getText())))/100;
+            double bmi = weight / (height * height);
+            scrollDown(view.findViewById(R.id.scrollView));
+            int age = Integer.parseInt(String.valueOf(ageView.getText()));
+            ((TextView)view.findViewById(R.id.bmi_value)).setText(String.format("%.2f",bmi));
+            String prompt = "With the BMI of:" + String.format("%.2f",bmi) + " Gender: " + gender + " Age: " + age +
+                    ". How much calories should an individual consume to lose, maintain, and gain weight with regards to gender. Provide additional note";
+            AIHelperPage.getAIResponse(prompt, new AIHelperPage.ResponseCallback() {
+                @Override
+                public void onResponse(String response) {
+                    response = response.replace("*","");
 
-        return view;
+                    String finalResponse = response;
+                    getActivity().runOnUiThread(()->{
+                        view.findViewById(R.id.overall_result).startAnimation(AnimationClass.addFadeInAnimation());
+                        view.findViewById(R.id.overall_result).setVisibility(View.VISIBLE);
+                        ((TextView)view.findViewById(R.id.overall_result)).setText(finalResponse);
+                        view.findViewById(R.id.loading_bmi).setVisibility(View.GONE);
+                        scrollDown(view.findViewById(R.id.scrollView));
+                    });
+                }
+            });
+            AIHelperPage.getAIResponse("Only one word or two, what is the category for a person with a bmi of" + bmi, new AIHelperPage.ResponseCallback() {
+                @Override
+                public void onResponse(String response) {
+                    getActivity().runOnUiThread(()->{
+                        ((TextView)view.findViewById(R.id.bmi_category)).setText(response);
+                    });
+                }
+            });
+        });
+    }
+    public static void scrollDown(ScrollView scrollView) {
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
     private static void addGenderButtonFunction(View view) {
         view.findViewById(R.id.male).setOnClickListener(click-> {
@@ -108,12 +172,14 @@ public class ReportPage extends Fragment {
             click.startAnimation(AnimationClass.addFadeOutAnimation());
             click.startAnimation(AnimationClass.addFadeInAnimation());
             view.findViewById(R.id.female).setBackgroundResource(R.drawable.gender_button);
+            gender = "male";
         });
         view.findViewById(R.id.female).setOnClickListener(click-> {
             click.setBackgroundResource(R.drawable.selected_gender);
             click.startAnimation(AnimationClass.addFadeOutAnimation());
             click.startAnimation(AnimationClass.addFadeInAnimation());
             view.findViewById(R.id.male).setBackgroundResource(R.drawable.gender_button);
+            gender = "female";
         });
     }
 }
