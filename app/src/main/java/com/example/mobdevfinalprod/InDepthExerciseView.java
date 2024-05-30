@@ -41,6 +41,7 @@ public class InDepthExerciseView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_in_depth_exercise_view);
+        findViewById(R.id.exercise_description).setVisibility(View.GONE);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -100,6 +101,7 @@ public class InDepthExerciseView extends AppCompatActivity {
                     descriptionView.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
                     descriptionView.setText(answer);
                     searchExercise(exerciseName, answer);
+                    findViewById(R.id.exercise_description).setVisibility(View.VISIBLE);
                     descriptionView.startAnimation(AnimationClass.addFadeInAnimation());
                 });
             }

@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobdevfinalprod.helperclasses.AnimationClass;
 import com.example.mobdevfinalprod.helperclasses.DatabaseOperations;
 import com.example.mobdevfinalprod.helperclasses.ExerciseCreator;
 import com.example.mobdevfinalprod.helperclasses.MyAdapter;

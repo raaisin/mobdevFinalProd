@@ -11,11 +11,14 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobdevfinalprod.helperclasses.AnimationClass;
+
+import java.util.EventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +40,9 @@ public class ReportPage extends Fragment {
     private static ImageButton see_results;
     private static EditText heightView;
     public static String gender;
-
+    static LinearLayout ageContainer;
+    static LinearLayout heightContainer;
+    static LinearLayout weightContainer;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -96,24 +101,38 @@ public class ReportPage extends Fragment {
         reduceAge = view.findViewById(R.id.reduce_age);
         addAge = view.findViewById(R.id.add_age);
         see_results = view.findViewById(R.id.submit_BMI);
+        heightContainer = view.findViewById(R.id.height_container);
+        weightContainer = view.findViewById(R.id.weight_container);
+        ageContainer = view.findViewById(R.id.age_container);
+        heightView.setOnClickListener(click->{
+            setHeightClick();
+        });
 
         reduceWeight.setOnClickListener(click->{
             int currentValue = Integer.parseInt(String.valueOf(weightView.getText()));
             weightView.setText(String.valueOf(currentValue-1));
+            setWeightClicks();
         });
         addWeight.setOnClickListener(click->{
             int currentValue = Integer.parseInt(String.valueOf(weightView.getText()));
             weightView.setText(String.valueOf(currentValue+1));
+            setWeightClicks();
         });
         reduceAge.setOnClickListener(click->{
             int currentValue = Integer.parseInt(String.valueOf(ageView.getText()));
             ageView.setText(String.valueOf(currentValue-1));
+            setAgeClick();
         });
         addAge.setOnClickListener(click->{
             int currentValue = Integer.parseInt(String.valueOf(ageView.getText()));
             ageView.setText(String.valueOf(currentValue+1));
+            setAgeClick();
         });
         see_results.setOnClickListener(click->{
+            ageContainer.setBackgroundResource(R.drawable.gender_button);
+            heightContainer.setBackgroundResource(R.drawable.gender_button);
+            weightContainer.setBackgroundResource(R.drawable.gender_button);
+
             if(gender == null) {
                 Toast.makeText(getContext(), "Please select a gender", Toast.LENGTH_SHORT).show();
                 return;
@@ -132,7 +151,7 @@ public class ReportPage extends Fragment {
             int age = Integer.parseInt(String.valueOf(ageView.getText()));
             ((TextView)view.findViewById(R.id.bmi_value)).setText(String.format("%.2f",bmi));
             String prompt = "With the BMI of:" + String.format("%.2f",bmi) + " Gender: " + gender + " Age: " + age +
-                    ". How much calories should an individual consume to lose, maintain, and gain weight with regards to gender. Provide additional note";
+                    ". How much calories should an individual consume to lose, maintain, and gain weight ONLY.";
             AIHelperPage.getAIResponse(prompt, new AIHelperPage.ResponseCallback() {
                 @Override
                 public void onResponse(String response) {
@@ -158,6 +177,27 @@ public class ReportPage extends Fragment {
             });
         });
     }
+    private static void setGenderClick(){
+        weightContainer.setBackgroundResource(R.drawable.gender_button);
+        heightContainer.setBackgroundResource(R.drawable.gender_button);
+        ageContainer.setBackgroundResource(R.drawable.gender_button);
+    }
+    private static void setWeightClicks() {
+        weightContainer.setBackgroundResource(R.drawable.selected_gender);
+        heightContainer.setBackgroundResource(R.drawable.gender_button);
+        ageContainer.setBackgroundResource(R.drawable.gender_button);
+    }
+    private static void setHeightClick() {
+        heightContainer.setBackgroundResource(R.drawable.selected_gender);
+        weightContainer.setBackgroundResource(R.drawable.gender_button);
+        ageContainer.setBackgroundResource(R.drawable.gender_button);
+    }
+    private static void setAgeClick() {
+        ageContainer.setBackgroundResource(R.drawable.selected_gender);
+        heightContainer.setBackgroundResource(R.drawable.gender_button);
+        weightContainer.setBackgroundResource(R.drawable.gender_button);
+    }
+
     public static void scrollDown(ScrollView scrollView) {
         scrollView.post(new Runnable() {
             @Override
@@ -173,6 +213,7 @@ public class ReportPage extends Fragment {
             click.startAnimation(AnimationClass.addFadeInAnimation());
             view.findViewById(R.id.female).setBackgroundResource(R.drawable.gender_button);
             gender = "male";
+            setGenderClick();
         });
         view.findViewById(R.id.female).setOnClickListener(click-> {
             click.setBackgroundResource(R.drawable.selected_gender);
@@ -180,6 +221,7 @@ public class ReportPage extends Fragment {
             click.startAnimation(AnimationClass.addFadeInAnimation());
             view.findViewById(R.id.male).setBackgroundResource(R.drawable.gender_button);
             gender = "female";
+            setGenderClick();
         });
     }
 }

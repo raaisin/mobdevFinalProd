@@ -46,12 +46,15 @@
                 android:layout_marginBottom="60dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins"
-                android:layout_marginHorizontal="5dp"/>
+                android:layout_marginHorizontal="5dp"
+                android:padding="15dp"
+                android:background="@drawable/gender_button"
+                android:text="sample text"/>
             <ProgressBar
                 android:id="@+id/text_loading_indicator"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:indeterminateTint="@color/main_color"/>
+                android:indeterminateTint="@color/secondary_color"/>
         </LinearLayout>
     </ScrollView>
 
@@ -64,7 +67,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="20dp"
-        android:background="@drawable/square_button_main_color"/>
+        android:background="@drawable/square_button_main_color"
+        android:backgroundTint="@color/secondary_color"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobdevfinalprod.helperclasses.AnimationClass;
 import com.example.mobdevfinalprod.helperclasses.DateUtils;
 import com.example.mobdevfinalprod.helperclasses.ViewUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,6 +41,10 @@ public class InitialView extends Fragment {
     private static final String ARG_USERNAME = "username";
     TextView username_container;
     private String username;
+    static LinearLayout welcome_container;
+    static LinearLayout first_linear_layout;
+    static LinearLayout second_linear_layout;
+    static LinearLayout third_linear_layout;
 
     public InitialView() {
         // Required empty public constructor
@@ -65,6 +71,15 @@ public class InitialView extends Fragment {
         DateUtils.displayDates(view);
         username_container = view.findViewById(R.id.username_init);
         username_container.setText(username);
+        welcome_container = view.findViewById(R.id.welcome_container);
+        first_linear_layout = view.findViewById(R.id.first_linearLayout);
+        second_linear_layout = view.findViewById(R.id.second_linearLayout);
+        third_linear_layout = view.findViewById(R.id.third_linearLayout);
+        welcome_container.setAnimation(AnimationClass.addSlideFromTopAnimation());
+        first_linear_layout.setAnimation(AnimationClass.addSlideFromRightAnimation());
+        second_linear_layout.setAnimation(AnimationClass.addSlideFromLeftAnimation());
+        third_linear_layout.setAnimation(AnimationClass.addSlideFromRightAnimation());
+
         int currentDay = DateUtils.getCurrentDay();
         List<Integer> dates = DateUtils.getDatesForWeek(currentDay - (currentDay % 7));
         ViewUtil.setImageViewsClickable(view,R.id.first_linearLayout,R.id.second_linearLayout,R.id.third_linearLayout);
